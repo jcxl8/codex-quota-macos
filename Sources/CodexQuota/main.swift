@@ -69,11 +69,46 @@ struct AdaptiveGlassSurface: ViewModifier {
     var radius: CGFloat
 
     func body(content: Content) -> some View {
+        let shape = RoundedRectangle(cornerRadius: radius, style: .continuous)
         if #available(macOS 26.0, *) {
-            content.glassEffect(.regular, in: RoundedRectangle(cornerRadius: radius, style: .continuous))
+            content
+                .glassEffect(.regular.tint(Color(nsColor: .controlBackgroundColor)), in: shape)
+                .overlay {
+                    shape.strokeBorder(Color.primary.opacity(0.10), lineWidth: 1)
+                        .allowsHitTesting(false)
+                }
         } else {
-            content.background(.regularMaterial, in: RoundedRectangle(cornerRadius: radius, style: .continuous))
+            content
+                .background(.thickMaterial, in: shape)
+                .overlay {
+                    shape.fill(Color(nsColor: .controlBackgroundColor).opacity(0.28))
+                        .allowsHitTesting(false)
+                }
+                .overlay {
+                    shape.strokeBorder(Color.primary.opacity(0.10), lineWidth: 1)
+                        .allowsHitTesting(false)
+                }
         }
+    }
+}
+
+struct PopoverMaterialView: NSViewRepresentable {
+    func makeNSView(context: Context) -> NSVisualEffectView {
+        let view = NSVisualEffectView()
+        view.material = .popover
+        view.blendingMode = .behindWindow
+        view.state = .active
+        view.wantsLayer = true
+        view.layer?.cornerRadius = 20
+        view.layer?.cornerCurve = .continuous
+        view.layer?.masksToBounds = true
+        return view
+    }
+
+    func updateNSView(_ view: NSVisualEffectView, context: Context) {
+        view.material = .popover
+        view.blendingMode = .behindWindow
+        view.state = .active
     }
 }
 
@@ -84,31 +119,38 @@ struct AdaptiveGlassButton<Label: View>: View {
     @ViewBuilder let label: () -> Label
 
     var body: some View {
-        if #available(macOS 26.0, *) {
-            if prominent {
-                Button(role: role, action: action) {
-                    label().foregroundStyle(Color.white)
+        Button(role: role, action: action, label: label)
+            .buttonStyle(QuotaGlassButtonStyle(prominent: prominent))
+    }
+}
+
+struct QuotaGlassButtonStyle: ButtonStyle {
+    var prominent: Bool
+    @Environment(\.isEnabled) private var isEnabled
+
+    func makeBody(configuration: Configuration) -> some View {
+        let emphasized = prominent && isEnabled
+        let shape = RoundedRectangle(cornerRadius: 10, style: .continuous)
+        configuration.label
+            .foregroundStyle(emphasized ? Color.white : Color.primary)
+            .padding(.horizontal, prominent ? 12 : 10)
+            .padding(.vertical, prominent ? 7 : 6)
+            .background {
+                if #available(macOS 26.0, *) {
+                    shape.glassEffect(
+                        .regular.tint(emphasized ? .blue : Color(nsColor: .controlBackgroundColor)),
+                        in: shape
+                    )
+                } else {
+                    shape.fill(emphasized ? Color.blue : Color(nsColor: .controlBackgroundColor))
                 }
-                .buttonStyle(.glassProminent)
-                .tint(.blue)
-            } else {
-                Button(role: role, action: action, label: label)
-                    .buttonStyle(.glass)
-                    .foregroundStyle(Color.primary)
             }
-        } else {
-            if prominent {
-                Button(role: role, action: action) {
-                    label().foregroundStyle(Color.white)
-                }
-                .buttonStyle(.borderedProminent)
-                .tint(.blue)
-            } else {
-                Button(role: role, action: action, label: label)
-                    .buttonStyle(.bordered)
-                    .foregroundStyle(Color.primary)
+            .overlay {
+                shape.strokeBorder(Color.primary.opacity(0.12), lineWidth: 1)
+                    .allowsHitTesting(false)
             }
-        }
+            .scaleEffect(configuration.isPressed ? 0.98 : 1)
+            .animation(.easeOut(duration: 0.12), value: configuration.isPressed)
     }
 }
 
@@ -138,7 +180,9 @@ struct QuotaDashboard: View {
 
     private var floatingPanelSurface: some View {
         panelContent
-            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+            .background {
+                PopoverMaterialView()
+            }
             .overlay {
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
                     .strokeBorder(Color.primary.opacity(0.08), lineWidth: 1)
