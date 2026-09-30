@@ -88,13 +88,17 @@ struct AdaptiveGlassButton<Label: View>: View {
             if prominent {
                 Button(role: role, action: action, label: label).buttonStyle(.glassProminent).tint(.blue)
             } else {
-                Button(role: role, action: action, label: label).buttonStyle(.glass)
+                Button(role: role, action: action, label: label)
+                    .buttonStyle(.glass)
+                    .foregroundStyle(Color.primary)
             }
         } else {
             if prominent {
                 Button(role: role, action: action, label: label).buttonStyle(.borderedProminent).tint(.blue)
             } else {
-                Button(role: role, action: action, label: label).buttonStyle(.bordered)
+                Button(role: role, action: action, label: label)
+                    .buttonStyle(.bordered)
+                    .foregroundStyle(Color.primary)
             }
         }
     }
@@ -114,16 +118,24 @@ struct QuotaDashboard: View {
         if #available(macOS 26.0, *) {
             GlassEffectContainer(spacing: 12) {
                 if isFloating {
-                    panelContent.glassEffect(.regular, in: RoundedRectangle(cornerRadius: 28, style: .continuous))
+                    floatingPanelSurface
                 } else {
                     panelContent
                 }
             }
-        } else if isFloating {
-            panelContent.background(.regularMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
         } else {
-            panelContent
+            if isFloating { floatingPanelSurface } else { panelContent }
         }
+    }
+
+    private var floatingPanelSurface: some View {
+        panelContent
+            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+            .overlay {
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .strokeBorder(Color.primary.opacity(0.08), lineWidth: 1)
+                    .allowsHitTesting(false)
+            }
     }
 
     private var panelContent: some View {
