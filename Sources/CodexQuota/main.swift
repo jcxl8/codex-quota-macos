@@ -9,12 +9,81 @@ struct WindowLimit {
         reset = (d["resetsAt"] as? Double).map { Date(timeIntervalSince1970: $0) }
     }
     var icon: String { remaining <= 10 ? "🔴" : remaining <= 30 ? "🟡" : "🟢" }
+    var tint: NSColor { remaining <= 10 ? .systemRed : remaining <= 30 ? .systemOrange : .systemGreen }
+}
+
+final class QuotaMeterView: NSStackView {
+    let nameLabel = NSTextField(labelWithString: "")
+    let percentLabel = NSTextField(labelWithString: "—")
+    let progress = NSProgressIndicator()
+    let recoveryLabel = NSTextField(labelWithString: "下次恢复时间未知")
+
+    init(title: String) {
+        super.init(frame: .zero)
+        orientation = .vertical
+        alignment = .leading
+        spacing = 4
+        translatesAutoresizingMaskIntoConstraints = false
+
+        nameLabel.stringValue = title
+        nameLabel.font = .systemFont(ofSize: 13, weight: .medium)
+        nameLabel.textColor = .secondaryLabelColor
+        percentLabel.font = .systemFont(ofSize: 20, weight: .semibold)
+        percentLabel.alignment = .right
+
+        let heading = NSStackView(views: [nameLabel, NSView(), percentLabel])
+        heading.orientation = .horizontal
+        heading.alignment = .centerY
+        heading.translatesAutoresizingMaskIntoConstraints = false
+
+        progress.style = .bar
+        progress.isIndeterminate = false
+        progress.minValue = 0
+        progress.maxValue = 100
+        progress.controlSize = .small
+        progress.translatesAutoresizingMaskIntoConstraints = false
+        progress.heightAnchor.constraint(equalToConstant: 5).isActive = true
+        progress.setAccessibilityLabel("\(title)剩余比例")
+
+        recoveryLabel.font = .systemFont(ofSize: 11)
+        recoveryLabel.textColor = .secondaryLabelColor
+
+        addArrangedSubview(heading)
+        addArrangedSubview(progress)
+        addArrangedSubview(recoveryLabel)
+        heading.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        progress.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        widthAnchor.constraint(greaterThanOrEqualToConstant: 280).isActive = true
+    }
+
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
+    func update(_ limit: WindowLimit?, dateText: (Date?) -> String) {
+        guard let limit else {
+            percentLabel.stringValue = "—"
+            percentLabel.textColor = .tertiaryLabelColor
+            progress.doubleValue = 0
+            recoveryLabel.stringValue = "下次恢复时间未知"
+            return
+        }
+        percentLabel.stringValue = "\(limit.remaining)%"
+        percentLabel.textColor = limit.tint
+        progress.doubleValue = Double(limit.remaining)
+        recoveryLabel.stringValue = "下次恢复  \(dateText(limit.reset))"
+    }
 }
 
 final class App: NSObject, NSApplicationDelegate, NSWindowDelegate {
     var item: NSStatusItem!
     var panel: NSPanel!
-    var label: NSTextField!
+    var rootStack: NSStackView!
+    var primaryMeter: QuotaMeterView!
+    var secondaryMeter: QuotaMeterView!
+    var resetCount: NSTextField!
+    var updatedLabel: NSTextField!
+    var scheduleLabel: NSTextField!
+    var scheduleIcon: NSImageView!
+    var refreshButton: NSButton!
     var process: Process?
     var input: FileHandle?
     var buffer = Data()
@@ -33,22 +102,18 @@ final class App: NSObject, NSApplicationDelegate, NSWindowDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         item.button?.setAccessibilityLabel("Codex 额度")
-        panel = NSPanel(contentRect: NSRect(x: 0, y: 0, width: 330, height: 260), styleMask: [.titled, .closable, .utilityWindow], backing: .buffered, defer: false)
+        panel = NSPanel(contentRect: NSRect(x: 0, y: 0, width: 360, height: 300), styleMask: [.titled, .closable, .utilityWindow], backing: .buffered, defer: false)
         panel.title = "Codex 额度"
         panel.delegate = self
-        panel.setFrameAutosaveName("CodexQuotaPanel")
+        panel.setFrameAutosaveName("CodexQuotaPanelV2")
         panel.level = .floating
         panel.isFloatingPanel = true
         panel.hidesOnDeactivate = false
         panel.isReleasedWhenClosed = false
+        panel.isMovableByWindowBackground = true
+        panel.setContentSize(NSSize(width: 360, height: 285))
         panel.center()
-        label = NSTextField(wrappingLabelWithString: "正在读取额度…")
-        label.frame = NSRect(x: 20, y: 60, width: 290, height: 180)
-        label.font = .systemFont(ofSize: 15)
-        panel.contentView?.addSubview(label)
-        let button = NSButton(title: "立即刷新", target: self, action: #selector(refresh))
-        button.frame = NSRect(x: 20, y: 15, width: 110, height: 32)
-        panel.contentView?.addSubview(button)
+        buildPanelContents()
         render()
         start()
         if CommandLine.arguments.contains("--show-panel") { togglePanel() }
@@ -138,6 +203,106 @@ final class App: NSObject, NSApplicationDelegate, NSWindowDelegate {
         let formatter = DateFormatter(); formatter.locale = Locale(identifier: "zh_TW")
         formatter.dateFormat = "MM/dd HH:mm"; return formatter.string(from: date)
     }
+    func buildPanelContents() {
+        guard let content = panel.contentView else { return }
+        let background = NSVisualEffectView()
+        background.material = .popover
+        background.blendingMode = .withinWindow
+        background.state = .active
+        background.translatesAutoresizingMaskIntoConstraints = false
+        content.addSubview(background)
+        NSLayoutConstraint.activate([
+            background.leadingAnchor.constraint(equalTo: content.leadingAnchor),
+            background.trailingAnchor.constraint(equalTo: content.trailingAnchor),
+            background.topAnchor.constraint(equalTo: content.topAnchor),
+            background.bottomAnchor.constraint(equalTo: content.bottomAnchor)
+        ])
+
+        rootStack = NSStackView()
+        rootStack.orientation = .vertical
+        rootStack.alignment = .leading
+        rootStack.spacing = 8
+        rootStack.translatesAutoresizingMaskIntoConstraints = false
+        background.addSubview(rootStack)
+        NSLayoutConstraint.activate([
+            rootStack.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 20),
+            rootStack.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -20),
+            rootStack.topAnchor.constraint(equalTo: background.topAnchor, constant: 15),
+            rootStack.bottomAnchor.constraint(lessThanOrEqualTo: background.bottomAnchor, constant: -15)
+        ])
+
+        let heading = NSStackView()
+        heading.orientation = .horizontal
+        heading.alignment = .centerY
+        heading.spacing = 6
+        let title = NSTextField(labelWithString: "额度概览")
+        title.font = .systemFont(ofSize: 17, weight: .semibold)
+        scheduleIcon = NSImageView(image: NSImage(systemSymbolName: "arrow.clockwise", accessibilityDescription: "自动刷新")!)
+        scheduleIcon.symbolConfiguration = NSImage.SymbolConfiguration(pointSize: 11, weight: .medium)
+        let spacer = NSView()
+        scheduleLabel = NSTextField(labelWithString: "每分钟更新")
+        scheduleLabel.font = .systemFont(ofSize: 11)
+        scheduleLabel.textColor = .secondaryLabelColor
+        heading.addArrangedSubview(title)
+        heading.addArrangedSubview(spacer)
+        heading.addArrangedSubview(scheduleIcon)
+        heading.addArrangedSubview(scheduleLabel)
+        rootStack.addArrangedSubview(heading)
+
+        primaryMeter = QuotaMeterView(title: "5 小时额度")
+        secondaryMeter = QuotaMeterView(title: "每周额度")
+        rootStack.addArrangedSubview(primaryMeter)
+        rootStack.addArrangedSubview(secondaryMeter)
+
+        let divider = NSBox()
+        divider.boxType = .separator
+        divider.translatesAutoresizingMaskIntoConstraints = false
+        divider.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        rootStack.addArrangedSubview(divider)
+        divider.widthAnchor.constraint(equalTo: rootStack.widthAnchor).isActive = true
+
+        let resetRow = NSStackView()
+        resetRow.orientation = .horizontal
+        resetRow.alignment = .centerY
+        resetRow.spacing = 8
+        let resetIcon = NSImageView(image: NSImage(systemSymbolName: "arrow.clockwise.circle.fill", accessibilityDescription: "可用重置")!)
+        resetIcon.symbolConfiguration = NSImage.SymbolConfiguration(pointSize: 16, weight: .medium)
+        resetIcon.contentTintColor = .controlAccentColor
+        let resetTitle = NSTextField(labelWithString: "可用重置次数")
+        resetTitle.font = .systemFont(ofSize: 13, weight: .medium)
+        let resetSpacer = NSView()
+        resetCount = NSTextField(labelWithString: "— 次")
+        resetCount.font = .systemFont(ofSize: 13, weight: .semibold)
+        resetCount.alignment = .center
+        resetCount.textColor = .controlAccentColor
+        resetCount.wantsLayer = true
+        resetCount.layer?.backgroundColor = NSColor.controlAccentColor.withAlphaComponent(0.12).cgColor
+        resetCount.layer?.cornerRadius = 8
+        resetRow.addArrangedSubview(resetIcon)
+        resetRow.addArrangedSubview(resetTitle)
+        resetRow.addArrangedSubview(resetSpacer)
+        resetRow.addArrangedSubview(resetCount)
+        rootStack.addArrangedSubview(resetRow)
+
+        updatedLabel = NSTextField(labelWithString: "正在读取额度…")
+        updatedLabel.font = .systemFont(ofSize: 11)
+        updatedLabel.textColor = .secondaryLabelColor
+        rootStack.addArrangedSubview(updatedLabel)
+
+        refreshButton = NSButton(title: "立即刷新", target: self, action: #selector(refresh))
+        refreshButton.image = NSImage(systemSymbolName: "arrow.clockwise", accessibilityDescription: "立即刷新")
+        refreshButton.imagePosition = .imageLeading
+        refreshButton.bezelStyle = .regularSquare
+        refreshButton.isBordered = false
+        refreshButton.controlSize = .large
+        refreshButton.wantsLayer = true
+        refreshButton.layer?.backgroundColor = NSColor.controlAccentColor.cgColor
+        refreshButton.layer?.cornerRadius = 10
+        refreshButton.contentTintColor = .white
+        refreshButton.attributedTitle = NSAttributedString(string: "立即刷新", attributes: [.foregroundColor: NSColor.white, .font: NSFont.systemFont(ofSize: 14, weight: .semibold)])
+        rootStack.addArrangedSubview(refreshButton)
+        refreshButton.widthAnchor.constraint(equalTo: rootStack.widthAnchor).isActive = true
+    }
     func lines() -> [String] {
         ["\(primary?.icon ?? "⚪️") 5 小时剩余：\(primary.map { "\($0.remaining)%" } ?? "未知")",
          "\(secondary?.icon ?? "⚪️") 每周剩余：\(secondary.map { "\($0.remaining)%" } ?? "未知")",
@@ -170,7 +335,13 @@ final class App: NSObject, NSApplicationDelegate, NSWindowDelegate {
             let row = NSMenuItem(title: title, action: action, keyEquivalent: ""); row.target = self; menu.addItem(row)
         }
         item.menu = menu
-        label.stringValue = (lines() + ["", state]).joined(separator: "\n")
+        primaryMeter.update(primary, dateText: dateText)
+        secondaryMeter.update(secondary, dateText: dateText)
+        resetCount.stringValue = resets.map { "\($0) 次" } ?? "暂不可用"
+        updatedLabel.stringValue = error ?? updated.map { "上次更新  \(dateText($0))" } ?? "正在读取额度…"
+        updatedLabel.textColor = error == nil ? .secondaryLabelColor : .systemRed
+        scheduleLabel.stringValue = error == nil ? "每分钟更新" : "更新暂停"
+        scheduleIcon.contentTintColor = error == nil ? .systemGreen : .systemOrange
     }
     @objc func togglePanel() {
         if panel.isVisible { panel.orderOut(nil) } else { panel.makeKeyAndOrderFront(nil); NSApp.activate(ignoringOtherApps: true) }
