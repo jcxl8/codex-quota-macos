@@ -4,7 +4,7 @@
 <p align="center">Your ChatGPT Codex limits, at a glance.</p>
 <p align="center"><img src="https://img.shields.io/badge/macOS-13%2B-111111?logo=apple&logoColor=white" alt="macOS 13 or later"> <img src="https://img.shields.io/badge/Swift-5.9%2B-F05138?logo=swift&logoColor=white" alt="Swift 5.9 or later"> <img src="https://img.shields.io/badge/version-1.4.0-007AFF" alt="Version 1.4.0"></p>
 
-<p align="center">🇺🇸 <a href="README.md">English</a> · 🇨🇳 <a href="README.zh-CN.md">简体中文</a> · 🇨🇳 <a href="README.zh-TW.md">繁體中文</a> · 🇫🇷 <a href="README.fr.md">Français</a> · 🇷🇺 <a href="README.ru.md">Русский</a></p>
+<p align="center">🇬🇧 <a href="README.md">English</a> · 🇨🇳 <a href="README.zh-CN.md">简体中文</a> · 🇨🇳 <a href="README.zh-TW.md">繁體中文</a> · 🇷🇺 <a href="README.ru.md">Русский</a> · 🇫🇷 <a href="README.fr.md">Français</a> · 🇩🇪 <a href="README.de.md">Deutsch</a> · 🇮🇹 <a href="README.it.md">Italiano</a> · 🇯🇵 <a href="README.ja.md">日本語</a> · 🇰🇷 <a href="README.ko.md">한국어</a> · 🇵🇹 <a href="README.pt.md">Português</a></p>
 
 ## Overview
 
@@ -18,7 +18,7 @@ A lightweight menu bar app for ChatGPT Codex. See your available usage, reset cr
 | Quota status | Progress bars for 5-hour and weekly limits, recovery times, and available reset credits |
 | Windows | Liquid Glass menu bar popover and a separate draggable floating window |
 | Updates | Automatic refresh every minute; confirmation before using a reset credit |
-| Languages | English, Simplified Chinese, Traditional Chinese, French, and Russian, selected from macOS preferences |
+| Languages | English, Simplified Chinese, Traditional Chinese, Russian, French, German, Italian, Japanese, Korean, and Portuguese, selected from macOS preferences |
 
 ## Installation
 

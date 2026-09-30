@@ -4,7 +4,7 @@
 <p align="center">随时查看 ChatGPT Codex 额度状态。</p>
 <p align="center"><img src="https://img.shields.io/badge/macOS-13%2B-111111?logo=apple&logoColor=white" alt="macOS 13 或更新版本"> <img src="https://img.shields.io/badge/Swift-5.9%2B-F05138?logo=swift&logoColor=white" alt="Swift 5.9 或更新版本"> <img src="https://img.shields.io/badge/version-1.4.0-007AFF" alt="版本 1.4.0"></p>
 
-<p align="center">🇺🇸 <a href="README.md">English</a> · 🇨🇳 <a href="README.zh-CN.md">简体中文</a> · 🇨🇳 <a href="README.zh-TW.md">繁體中文</a> · 🇫🇷 <a href="README.fr.md">Français</a> · 🇷🇺 <a href="README.ru.md">Русский</a></p>
+<p align="center">🇬🇧 <a href="README.md">English</a> · 🇨🇳 <a href="README.zh-CN.md">简体中文</a> · 🇨🇳 <a href="README.zh-TW.md">繁體中文</a> · 🇷🇺 <a href="README.ru.md">Русский</a> · 🇫🇷 <a href="README.fr.md">Français</a> · 🇩🇪 <a href="README.de.md">Deutsch</a> · 🇮🇹 <a href="README.it.md">Italiano</a> · 🇯🇵 <a href="README.ja.md">日本語</a> · 🇰🇷 <a href="README.ko.md">한국어</a> · 🇵🇹 <a href="README.pt.md">Português</a></p>
 
 ## 项目简介
 
@@ -18,7 +18,7 @@
 | 额度状态 | 进度条显示 5 小时和每周额度、恢复时间与可用重置次数 |
 | 窗口 | Liquid Glass 菜单栏弹窗，以及可单独拖动的浮窗 |
 | 更新 | 每分钟自动刷新；使用重置机会前要求确认 |
-| 语言 | 跟随 macOS 首选语言，支持英语、简体中文、繁体中文、法语和俄语 |
+| 语言 | 跟随 macOS 首选语言，支持英语、简体中文、繁体中文、俄语、法语、德语、意大利语、日语、韩语和葡萄牙语 |
 
 ## 安装
 
