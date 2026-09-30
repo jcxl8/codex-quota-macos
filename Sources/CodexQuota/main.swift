@@ -154,10 +154,18 @@ final class App: NSObject, NSApplicationDelegate, NSWindowDelegate {
         item.button?.title = error != nil ? "⚠️ Codex" : primary.map { "\($0.icon) \($0.remaining)%" } ?? "⚪️ Codex"
         item.button?.toolTip = (lines() + [error ?? "每分钟刷新"]).joined(separator: "\n")
         let menu = NSMenu()
-        for line in lines() { let row = NSMenuItem(title: line, action: nil, keyEquivalent: ""); menu.addItem(row) }
+        for line in lines() {
+            let row = NSMenuItem(title: line, action: #selector(infoItemSelected), keyEquivalent: "")
+            row.target = self
+            row.attributedTitle = NSAttributedString(string: line, attributes: [.foregroundColor: NSColor.labelColor])
+            menu.addItem(row)
+        }
         menu.addItem(.separator())
         let state = error ?? updated.map { "更新于 \(dateText($0)) · 每分钟刷新" } ?? "正在读取…"
-        menu.addItem(NSMenuItem(title: state, action: nil, keyEquivalent: ""))
+        let status = NSMenuItem(title: state, action: #selector(infoItemSelected), keyEquivalent: "")
+        status.target = self
+        status.attributedTitle = NSAttributedString(string: state, attributes: [.foregroundColor: NSColor.secondaryLabelColor])
+        menu.addItem(status)
         for (title, action) in [(panel.isVisible ? "隐藏浮窗" : "显示浮窗", #selector(togglePanel)), ("立即刷新", #selector(refresh)), ("退出", #selector(quit))] {
             let row = NSMenuItem(title: title, action: action, keyEquivalent: ""); row.target = self; menu.addItem(row)
         }
@@ -171,6 +179,7 @@ final class App: NSObject, NSApplicationDelegate, NSWindowDelegate {
     func resetText() -> String {
         resets.map { "\($0) 次" } ?? "接口未提供，请更新 ChatGPT"
     }
+    @objc func infoItemSelected() {}
     func windowWillClose(_ notification: Notification) {
         DispatchQueue.main.async { [weak self] in self?.render() }
     }
