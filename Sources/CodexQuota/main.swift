@@ -86,7 +86,11 @@ struct AdaptiveGlassButton<Label: View>: View {
     var body: some View {
         if #available(macOS 26.0, *) {
             if prominent {
-                Button(role: role, action: action, label: label).buttonStyle(.glassProminent).tint(.blue)
+                Button(role: role, action: action) {
+                    label().foregroundStyle(Color.white)
+                }
+                .buttonStyle(.glassProminent)
+                .tint(.blue)
             } else {
                 Button(role: role, action: action, label: label)
                     .buttonStyle(.glass)
@@ -94,7 +98,11 @@ struct AdaptiveGlassButton<Label: View>: View {
             }
         } else {
             if prominent {
-                Button(role: role, action: action, label: label).buttonStyle(.borderedProminent).tint(.blue)
+                Button(role: role, action: action) {
+                    label().foregroundStyle(Color.white)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.blue)
             } else {
                 Button(role: role, action: action, label: label)
                     .buttonStyle(.bordered)
@@ -140,12 +148,17 @@ struct QuotaDashboard: View {
 
     private var panelContent: some View {
         VStack(alignment: .leading, spacing: 12) {
+            if isFloating {
+                floatingTopDragRegion
+            }
             header
             quotaMeters
             resetAction
             footer
         }
-        .padding(18)
+        .padding(.horizontal, 18)
+        .padding(.bottom, 18)
+        .padding(.top, isFloating ? 0 : 18)
         .frame(width: 390)
         .alert(Text(verbatim: AppText.text("Use one reset credit?")), isPresented: $confirmsReset) {
             Button(role: .destructive) { app.consumeResetCredit() } label: {
@@ -156,6 +169,27 @@ struct QuotaDashboard: View {
             }
         } message: {
             Text(verbatim: AppText.text("This will use one reset credit and reset eligible quota."))
+        }
+    }
+
+    @ViewBuilder
+    private var floatingTopDragRegion: some View {
+        if #available(macOS 26.0, *) {
+            Color.clear
+                .frame(height: 18)
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, -18)
+                .contentShape(Rectangle())
+                .gesture(WindowDragGesture())
+                .allowsWindowActivationEvents()
+                .accessibilityHidden(true)
+        } else {
+            Color.clear
+                .frame(height: 18)
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, -18)
+                .allowsHitTesting(false)
+                .accessibilityHidden(true)
         }
     }
 
@@ -278,8 +312,11 @@ struct QuotaDashboard: View {
                 } icon: {
                     Image(systemName: "arrow.uturn.backward")
                 }
+                .font(.system(size: 14, weight: .semibold))
+                .padding(.horizontal, 4)
             }
-            .controlSize(.small)
+            .controlSize(.regular)
+            .buttonBorderShape(.roundedRectangle)
             .disabled(!app.canConsumeReset)
         }
         .padding(13)
