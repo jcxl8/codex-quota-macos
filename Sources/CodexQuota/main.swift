@@ -69,25 +69,10 @@ struct AdaptiveGlassSurface: ViewModifier {
     var radius: CGFloat
 
     func body(content: Content) -> some View {
-        let shape = RoundedRectangle(cornerRadius: radius, style: .continuous)
         if #available(macOS 26.0, *) {
-            content
-                .glassEffect(.regular.tint(Color(nsColor: .controlBackgroundColor)), in: shape)
-                .overlay {
-                    shape.strokeBorder(Color.primary.opacity(0.10), lineWidth: 1)
-                        .allowsHitTesting(false)
-                }
+            content.glassEffect(.regular, in: RoundedRectangle(cornerRadius: radius, style: .continuous))
         } else {
-            content
-                .background(.thickMaterial, in: shape)
-                .overlay {
-                    shape.fill(Color(nsColor: .controlBackgroundColor).opacity(0.28))
-                        .allowsHitTesting(false)
-                }
-                .overlay {
-                    shape.strokeBorder(Color.primary.opacity(0.10), lineWidth: 1)
-                        .allowsHitTesting(false)
-                }
+            content.background(.regularMaterial, in: RoundedRectangle(cornerRadius: radius, style: .continuous))
         }
     }
 }
@@ -117,40 +102,31 @@ struct AdaptiveGlassButton<Label: View>: View {
     var role: ButtonRole? = nil
     var prominent = false
     @ViewBuilder let label: () -> Label
-
-    var body: some View {
-        Button(role: role, action: action, label: label)
-            .buttonStyle(QuotaGlassButtonStyle(prominent: prominent))
-    }
-}
-
-struct QuotaGlassButtonStyle: ButtonStyle {
-    var prominent: Bool
     @Environment(\.isEnabled) private var isEnabled
 
-    func makeBody(configuration: Configuration) -> some View {
+    var body: some View {
         let emphasized = prominent && isEnabled
         let shape = RoundedRectangle(cornerRadius: 10, style: .continuous)
-        configuration.label
-            .foregroundStyle(emphasized ? Color.white : Color.primary)
-            .padding(.horizontal, prominent ? 12 : 10)
-            .padding(.vertical, prominent ? 7 : 6)
-            .background {
-                if #available(macOS 26.0, *) {
-                    shape.glassEffect(
-                        .regular.tint(emphasized ? .blue : Color(nsColor: .controlBackgroundColor)),
-                        in: shape
-                    )
-                } else {
-                    shape.fill(emphasized ? Color.blue : Color(nsColor: .controlBackgroundColor))
+        Button(role: role, action: action) {
+            label()
+                .foregroundStyle(emphasized ? Color.white : Color.primary)
+                .padding(.horizontal, prominent ? 12 : 10)
+                .padding(.vertical, prominent ? 7 : 6)
+                .background {
+                    if emphasized {
+                        shape.fill(Color.blue)
+                    } else {
+                        shape.fill(Color(nsColor: .controlBackgroundColor).opacity(0.78))
+                            .background(.regularMaterial, in: shape)
+                    }
                 }
-            }
-            .overlay {
-                shape.strokeBorder(Color.primary.opacity(0.12), lineWidth: 1)
-                    .allowsHitTesting(false)
-            }
-            .scaleEffect(configuration.isPressed ? 0.98 : 1)
-            .animation(.easeOut(duration: 0.12), value: configuration.isPressed)
+                .overlay {
+                    shape.strokeBorder(Color.primary.opacity(0.12), lineWidth: 1)
+                        .allowsHitTesting(false)
+                }
+                .contentShape(shape)
+        }
+        .buttonStyle(.plain)
     }
 }
 
