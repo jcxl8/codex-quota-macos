@@ -7,5 +7,8 @@ app_path="Codex额度.app"
 mkdir -p "$app_path/Contents/MacOS"
 cp "$binary_dir/CodexQuota" "$app_path/Contents/MacOS/CodexQuota"
 cp Info.plist "$app_path/Contents/Info.plist"
+mkdir -p "$app_path/Contents/Resources"
+rm -rf "$app_path/Contents/Resources/Contents" "$app_path/Contents/Resources/CodexQuota_CodexQuota.bundle"
+cp -R "$binary_dir/CodexQuota_CodexQuota.bundle" "$app_path/Contents/Resources/CodexQuota_CodexQuota.bundle"
 codesign --force --sign - "$app_path"
 "$binary_dir/CodexQuota" --self-check

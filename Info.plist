@@ -4,8 +4,10 @@
 <key>CFBundleExecutable</key><string>CodexQuota</string>
 <key>CFBundleIdentifier</key><string>local.zheng.codexquota</string>
 <key>CFBundleName</key><string>Codex额度</string>
-<key>CFBundleVersion</key><string>1</string>
-<key>CFBundleShortVersionString</key><string>1.0.0</string>
+<key>CFBundleDevelopmentRegion</key><string>en</string>
+<key>CFBundleLocalizations</key><array><string>en</string><string>fr</string><string>ru</string><string>zh-Hans</string><string>zh-Hant</string></array>
+<key>CFBundleVersion</key><string>4</string>
+<key>CFBundleShortVersionString</key><string>1.2.0</string>
 <key>LSUIElement</key><true/>
 <key>NSHighResolutionCapable</key><true/>
 <key>LSMinimumSystemVersion</key><string>13.0</string>
