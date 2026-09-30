@@ -76,6 +76,7 @@ enum AppText {
         "Refresh quota": [.simplifiedChinese: "刷新额度", .traditionalChinese: "重新整理額度", .french: "Actualiser les quotas", .russian: "Обновить лимиты"],
         "Close floating window": [.simplifiedChinese: "关闭浮窗", .traditionalChinese: "關閉浮動視窗", .french: "Fermer la fenêtre flottante", .russian: "Закрыть плавающее окно"],
         "Open floating window": [.simplifiedChinese: "打开浮窗", .traditionalChinese: "開啟浮動視窗", .french: "Ouvrir la fenêtre flottante", .russian: "Открыть плавающее окно"],
+        "Quit": [.simplifiedChinese: "退出", .traditionalChinese: "退出", .french: "Quitter", .russian: "Выйти"],
         "Quit Codex Quota": [.simplifiedChinese: "退出 Codex 额度", .traditionalChinese: "退出 Codex 額度", .french: "Quitter Quota Codex", .russian: "Выйти из Лимитов Codex"],
         "More options": [.simplifiedChinese: "更多选项", .traditionalChinese: "更多選項", .french: "Plus d’options", .russian: "Дополнительные параметры"],
         "Drag the title to move this window": [.simplifiedChinese: "拖动标题可移动浮窗", .traditionalChinese: "拖曳標題可移動浮動視窗", .french: "Faites glisser le titre pour déplacer la fenêtre", .russian: "Перетащите заголовок, чтобы переместить окно"],

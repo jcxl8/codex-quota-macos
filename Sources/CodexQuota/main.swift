@@ -100,16 +100,6 @@ struct AdaptiveGlassButton<Label: View>: View {
     }
 }
 
-struct AdaptiveGlassMenuStyle: ViewModifier {
-    func body(content: Content) -> some View {
-        if #available(macOS 26.0, *) {
-            content.menuStyle(.borderlessButton).buttonStyle(.glass)
-        } else {
-            content.menuStyle(.borderlessButton).buttonStyle(.bordered)
-        }
-    }
-}
-
 struct QuotaDashboard: View {
     @ObservedObject var app: App
     var isFloating: Bool
@@ -188,24 +178,16 @@ struct QuotaDashboard: View {
                 .accessibilityLabel(Text(verbatim: AppText.text("Open floating window")))
             }
 
-            Menu {
-                Button(role: .destructive) {
-                    NSApp.terminate(nil)
-                } label: {
-                    Label {
-                        Text(verbatim: AppText.text("Quit Codex Quota"))
-                    } icon: {
-                        Image(systemName: "power")
-                    }
+            AdaptiveGlassButton(action: { NSApp.terminate(nil) }) {
+                Label {
+                    Text(verbatim: AppText.text("Quit"))
+                } icon: {
+                    Image(systemName: "power")
                 }
-            } label: {
-                Image(systemName: "ellipsis")
-                    .frame(width: 18, height: 18)
             }
-            .modifier(AdaptiveGlassMenuStyle())
-            .frame(width: 32, height: 32)
-            .accessibilityLabel(Text(verbatim: AppText.text("More options")))
-            .help(AppText.text("More options"))
+            .controlSize(.small)
+            .accessibilityLabel(Text(verbatim: AppText.text("Quit")))
+            .help(AppText.text("Quit Codex Quota"))
         }
     }
 
@@ -429,7 +411,7 @@ final class App: NSObject, NSApplicationDelegate, NSWindowDelegate, ObservableOb
             try process.run()
             self.process = process
             send(["id": 1, "method": "initialize", "params": [
-                "clientInfo": ["name": "codex_quota", "title": "Codex Quota", "version": "1.2.0"],
+                "clientInfo": ["name": "codex_quota", "title": "Codex Quota", "version": "1.4.0"],
                 "capabilities": ["experimentalApi": true, "requestAttestation": false]
             ]])
             armTimeout()
@@ -648,6 +630,9 @@ if CommandLine.arguments.contains("--self-check") {
     assert(AppLanguage.resolve(preferredLanguages: ["es-ES", "fr-FR"]) == .french)
     assert(AppLanguage.resolve(preferredLanguages: ["de-DE"]) == .english)
     assert(AppText.text("Updates every minute", language: .simplifiedChinese) == "每分钟自动更新")
+    assert(AppText.text("Quit", language: .traditionalChinese) == "退出")
+    assert(AppText.text("Quit", language: .french) == "Quitter")
+    assert(AppText.text("Quit", language: .russian) == "Выйти")
     print("额度解析检查通过")
 } else if CommandLine.arguments.contains("--probe") {
     MainActor.assumeIsolated {
