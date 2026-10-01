@@ -19,11 +19,12 @@ Eine schlanke Menüleisten-App für ChatGPT Codex. Prüfe verfügbare Nutzung, R
 | Limitstatus | Fortschrittsbalken für 5-Stunden- und Wochenlimits, Wiederherstellungszeiten und verfügbare Rücksetzungen |
 | Fenster | Liquid-Glass-Menüleisten-Popover und separates, verschiebbares Fenster |
 | Aktualisierung | Automatisch jede Minute; Bestätigung vor jeder Rücksetzung |
+| Start | Ein optionaler lokaler Agent öffnet die App beim Start von ChatGPT |
 | Sprachen | Englisch, vereinfachtes und traditionelles Chinesisch, Russisch, Französisch, Deutsch, Italienisch, Japanisch, Koreanisch und Portugiesisch |
 
 ## Installation
 
-Lade [CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/raw/refs/heads/main/CodexQuota-macOS.zip) herunter, entpacke die Datei und öffne CodexQuota.app. Der Finder zeigt den App-Namen in der Systemsprache an. Falls macOS den ersten Start blockiert, klicke im Finder bei gedrückter Ctrl-Taste auf die App und wähle Öffnen.
+Lade [CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/raw/refs/heads/main/CodexQuota-macOS.zip) herunter, entpacke die Datei und öffne CodexQuota.app. Der Finder zeigt den App-Namen in der Systemsprache an. Aktiviere zum Öffnen mit ChatGPT in den Einstellungen der App die Option Beim Start von ChatGPT öffnen. Falls macOS den ersten Start blockiert, klicke im Finder bei gedrückter Ctrl-Taste auf die App und wähle Öffnen.
 
 Erfordert macOS 13 oder neuer. Liquid Glass ist ab macOS 26 verfügbar; ältere Versionen verwenden das Systemmaterial.
 

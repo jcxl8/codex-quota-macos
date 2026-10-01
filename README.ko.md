@@ -19,11 +19,12 @@ ChatGPT Codex를 위한 가벼운 메뉴 막대 앱입니다. 작업을 방해�
 | 한도 상태 | 5시간 및 주간 한도 진행률, 회복 시간, 사용 가능한 초기화 횟수 표시 |
 | 윈도우 | Liquid Glass 메뉴 막대 팝오버와 별도로 이동할 수 있는 플로팅 윈도우 |
 | 업데이트 | 매분 자동 새로고침, 초기화 사용 전 확인 |
+| 시작 | ChatGPT가 시작될 때 한도 앱을 여는 선택형 로컬 감시 기능 |
 | 언어 | 영어, 중국어(간체·번체), 러시아어, 프랑스어, 독일어, 이탈리아어, 일본어, 한국어, 포르투갈어 |
 
 ## 설치
 
-[CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/raw/refs/heads/main/CodexQuota-macOS.zip)을 다운로드해 압축을 풀고 CodexQuota.app을 여세요. Finder에는 시스템 언어에 맞는 앱 이름이 표시됩니다. macOS에서 첫 실행을 차단하면 Finder에서 앱을 Control 키와 함께 클릭한 뒤 열기를 선택하세요.
+[CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/raw/refs/heads/main/CodexQuota-macOS.zip)을 다운로드해 압축을 풀고 CodexQuota.app을 여세요. Finder에는 시스템 언어에 맞는 앱 이름이 표시됩니다. ChatGPT와 함께 실행하려면 앱 설정에서 ChatGPT 시작 시 열기를 켜세요. macOS에서 첫 실행을 차단하면 Finder에서 앱을 Control 키와 함께 클릭한 뒤 열기를 선택하세요.
 
 macOS 13 이상이 필요합니다. macOS 26 이상에서는 Liquid Glass를 사용하고, 이전 버전에서는 시스템 머티리얼을 사용합니다.
 

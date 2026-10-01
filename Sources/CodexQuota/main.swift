@@ -383,6 +383,23 @@ struct QuotaDashboard: View {
                 .foregroundStyle(app.error == nil ? Color.primary.opacity(0.72) : Color.orange)
                 .lineLimit(2)
             Spacer(minLength: 0)
+            Menu {
+                Toggle(isOn: Binding(
+                    get: { app.launchWithChatGPT },
+                    set: { app.setLaunchWithChatGPT($0) }
+                )) {
+                    Text(verbatim: AppText.text("Open with ChatGPT"))
+                }
+            } label: {
+                Image(systemName: "gearshape")
+                    .font(.system(size: 12, weight: .medium))
+                    .foregroundStyle(Color.primary.opacity(0.72))
+                    .frame(width: 28, height: 28)
+                    .background(Circle().fill(Color.primary.opacity(0.06)))
+            }
+            .menuStyle(.borderlessButton)
+            .accessibilityLabel(Text(verbatim: AppText.text("Settings")))
+            .help(AppText.text("Settings"))
         }
         .padding(.horizontal, 2)
     }
@@ -405,6 +422,7 @@ final class App: NSObject, NSApplicationDelegate, NSWindowDelegate, ObservableOb
     @Published var ready = false
     @Published var pending = false
     @Published var isConsumingReset = false
+    @Published var launchWithChatGPT = UserDefaults.standard.bool(forKey: ChatGPTLaunchAgent.preferenceKey)
     var serial = 10
     var requestID: Int?
     var resetRequestID: Int?
@@ -418,6 +436,13 @@ final class App: NSObject, NSApplicationDelegate, NSWindowDelegate, ObservableOb
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        if launchWithChatGPT {
+            do {
+                try ChatGPTLaunchAgent.enable()
+            } catch {
+                showNotice(AppText.text("Could not change launch setting."))
+            }
+        }
         item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         item.button?.setAccessibilityLabel(AppText.text("Codex Quota"))
         item.button?.target = self
@@ -663,6 +688,21 @@ final class App: NSObject, NSApplicationDelegate, NSWindowDelegate, ObservableOb
         }
     }
 
+    func setLaunchWithChatGPT(_ enabled: Bool) {
+        guard enabled != launchWithChatGPT else { return }
+        do {
+            if enabled {
+                try ChatGPTLaunchAgent.enable()
+            } else {
+                try ChatGPTLaunchAgent.disable()
+            }
+            UserDefaults.standard.set(enabled, forKey: ChatGPTLaunchAgent.preferenceKey)
+            launchWithChatGPT = enabled
+        } catch {
+            showNotice(AppText.text("Could not change launch setting."))
+        }
+    }
+
     func dateText(_ date: Date?) -> String {
         guard let date else { return AppText.text("Unknown") }
         let formatter = DateFormatter()
@@ -715,6 +755,9 @@ final class App: NSObject, NSApplicationDelegate, NSWindowDelegate, ObservableOb
 }
 
 if CommandLine.arguments.contains("--self-check") {
+    let launchAgent = ChatGPTLaunchAgent.propertyList(executablePath: "/Applications/CodexQuota.app/Contents/MacOS/CodexQuotaWatcher")
+    assert(launchAgent["ProgramArguments"] as? [String] == ["/Applications/CodexQuota.app/Contents/MacOS/CodexQuotaWatcher"])
+    assert(launchAgent["RunAtLoad"] as? Bool == true)
     let emptyStatusIcon = quotaStatusIcon(remaining: 0)
     let fullStatusIcon = quotaStatusIcon(remaining: 100)
     assert(emptyStatusIcon?.size == NSSize(width: 18, height: 18))
@@ -737,6 +780,12 @@ if CommandLine.arguments.contains("--self-check") {
     assert(AppLanguage.resolve(preferredLanguages: ["es-ES"]) == .english)
     assert(AppText.text("Updates every minute", language: .simplifiedChinese) == "每分钟自动更新")
     assert(AppText.text("Quit", language: .traditionalChinese) == "退出")
+    assert(AppText.text("Open with ChatGPT", language: .simplifiedChinese) == "ChatGPT 启动时打开")
+    assert(AppText.text("Open with ChatGPT", language: .traditionalChinese) == "ChatGPT 啟動時開啟")
+    assert([
+        AppLanguage.simplifiedChinese, .traditionalChinese, .french, .russian,
+        .german, .italian, .japanese, .korean, .portuguese
+    ].allSatisfy { AppText.text("Open with ChatGPT", language: $0) != "Open with ChatGPT" })
     assert(AppText.text("Quit", language: .french) == "Quitter")
     assert(AppText.text("Quit", language: .russian) == "Выйти")
     assert(AppText.text("Codex Quota", language: .german) == "Codex-Limit")

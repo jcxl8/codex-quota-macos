@@ -6,6 +6,7 @@ binary_dir=$(swift build --show-bin-path)
 app_path="CodexQuota.app"
 mkdir -p "$app_path/Contents/MacOS"
 cp "$binary_dir/CodexQuota" "$app_path/Contents/MacOS/CodexQuota"
+cp "$binary_dir/CodexQuotaWatcher" "$app_path/Contents/MacOS/CodexQuotaWatcher"
 cp Info.plist "$app_path/Contents/Info.plist"
 mkdir -p "$app_path/Contents/Resources"
 rm -rf "$app_path/Contents/Resources/Contents" "$app_path/Contents/Resources/CodexQuota_CodexQuota.bundle"
@@ -22,5 +23,6 @@ for icon_size in 16 32 128 256 512; do
 done
 rm -f "$app_path/Contents/Resources/CodexQuota.icns"
 iconutil -c icns "$iconset_path" -o "$app_path/Contents/Resources/CodexQuota.icns"
+codesign --force --sign - --identifier local.zheng.codexquota.chatgptwatcher "$app_path/Contents/MacOS/CodexQuotaWatcher"
 codesign --force --sign - "$app_path"
 "$binary_dir/CodexQuota" --self-check

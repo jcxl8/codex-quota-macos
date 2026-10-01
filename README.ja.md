@@ -19,11 +19,12 @@ ChatGPT Codex 用の軽量なメニューバーアプリです。作業を中断
 | 利用状況 | 5時間枠と週間枠の進捗バー、回復時刻、利用可能なリセット権 |
 | ウィンドウ | Liquid Glass のメニューバーポップオーバーと、独立して移動できるフローティングウィンドウ |
 | 更新 | 毎分自動更新。リセット権の使用前に確認 |
+| 起動 | ChatGPTの起動時に利用枠アプリを開くローカル監視機能（任意） |
 | 対応言語 | 英語、中国語（簡体字・繁体字）、ロシア語、フランス語、ドイツ語、イタリア語、日本語、韓国語、ポルトガル語 |
 
 ## インストール
 
-[CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/raw/refs/heads/main/CodexQuota-macOS.zip) をダウンロードして展開し、CodexQuota.app を開きます。Finder ではシステム言語に合わせたアプリ名が表示されます。初回起動が macOS にブロックされた場合は、Finder でアプリを Control キーを押しながらクリックし、「開く」を選択してください。
+[CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/raw/refs/heads/main/CodexQuota-macOS.zip) をダウンロードして展開し、CodexQuota.app を開きます。Finder ではシステム言語に合わせたアプリ名が表示されます。ChatGPTの起動時に開くには、アプリの設定で「ChatGPTの起動時に開く」を有効にしてください。初回起動が macOS にブロックされた場合は、Finder でアプリを Control キーを押しながらクリックし、「開く」を選択してください。
 
 macOS 13 以降が必要です。macOS 26 以降では Liquid Glass を使用し、それ以前のバージョンではシステムマテリアルを使用します。
 

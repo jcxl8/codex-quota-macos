@@ -19,11 +19,12 @@ Un’app leggera per la barra dei menu di ChatGPT Codex. Controlla i limiti disp
 | Stato dei limiti | Barre di avanzamento per i limiti di 5 ore e settimanali, tempi di recupero e crediti disponibili |
 | Finestre | Popover Liquid Glass nella barra dei menu e finestra mobile indipendente |
 | Aggiornamenti | Aggiornamento automatico ogni minuto; conferma prima di usare un credito |
+| Avvio | Un agente locale facoltativo apre l’app all’avvio di ChatGPT |
 | Lingue | Inglese, cinese semplificato e tradizionale, russo, francese, tedesco, italiano, giapponese, coreano e portoghese |
 
 ## Installazione
 
-Scarica [CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/raw/refs/heads/main/CodexQuota-macOS.zip), decomprimilo e apri CodexQuota.app. Il Finder mostra il nome dell’app nella lingua del sistema. Se macOS blocca il primo avvio, fai clic sull’app nel Finder tenendo premuto Control e scegli Apri.
+Scarica [CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/raw/refs/heads/main/CodexQuota-macOS.zip), decomprimilo e apri CodexQuota.app. Il Finder mostra il nome dell’app nella lingua del sistema. Per aprire l’app insieme a ChatGPT, vai nelle Impostazioni e attiva Apri all’avvio di ChatGPT. Se macOS blocca il primo avvio, fai clic sull’app nel Finder tenendo premuto Control e scegli Apri.
 
 Richiede macOS 13 o successivo. Liquid Glass è disponibile da macOS 26; le versioni precedenti usano il materiale di sistema.
 

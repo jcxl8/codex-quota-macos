@@ -19,11 +19,12 @@
 | 額度狀態 | 以進度條呈現 5 小時和每週額度、恢復時間與可用重置次數 |
 | 視窗 | Liquid Glass 選單列彈出視窗，以及可單獨拖曳的浮動視窗 |
 | 更新 | 每分鐘自動更新；使用重置機會前要求確認 |
+| 啟動方式 | 可選啟用本機背景監聽，在 ChatGPT 啟動時自動開啟額度應用程式 |
 | 語言 | 跟隨 macOS 偏好語言，支援英文、簡體中文、繁體中文、俄文、法文、德文、義大利文、日文、韓文和葡萄牙文 |
 
 ## 安裝
 
-下載 [CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/raw/refs/heads/main/CodexQuota-macOS.zip)，解壓縮後開啟 CodexQuota.app。Finder 會依系統語言顯示應用程式名稱。若 macOS 首次阻止開啟，請在 Finder 中按住 Control 點擊應用程式並選擇「打開」。
+下載 [CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/raw/refs/heads/main/CodexQuota-macOS.zip)，解壓縮後開啟 CodexQuota.app。Finder 會依系統語言顯示應用程式名稱。如需啟用，請開啟應用程式內的「設定」，並開啟「ChatGPT 啟動時開啟」。若 macOS 首次阻止開啟，請在 Finder 中按住 Control 點擊應用程式並選擇「打開」。
 
 支援 macOS 13 及更新版本。macOS 26 及更新版本使用 Liquid Glass，較早版本使用系統材質。
 
