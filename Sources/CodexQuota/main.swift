@@ -14,6 +14,32 @@ struct WindowLimit {
     }
 }
 
+func quotaStatusIcon(remaining: Int?) -> NSImage? {
+    guard let url = Bundle.module.url(forResource: "chatgptTemplate", withExtension: "png"),
+          let mark = NSImage(contentsOf: url) else { return nil }
+
+    let size = NSSize(width: 18, height: 18)
+    let bounds = NSRect(origin: .zero, size: size)
+    let icon = NSImage(size: size)
+    icon.lockFocus()
+    NSColor.labelColor.setFill()
+    NSBezierPath(rect: bounds).fill()
+    mark.draw(in: bounds, from: .zero, operation: .destinationIn, fraction: 1)
+
+    if let remaining {
+        let fraction = CGFloat(max(0, min(100, remaining))) / 100
+        NSColor.systemBlue.setFill()
+        NSGraphicsContext.current?.compositingOperation = .sourceAtop
+        NSBezierPath(rect: NSRect(x: 0, y: 0, width: size.width, height: size.height * fraction))
+            .fill()
+        NSGraphicsContext.current?.compositingOperation = .sourceOver
+    }
+
+    icon.unlockFocus()
+    icon.isTemplate = false
+    return icon
+}
+
 struct QuotaProgressBar: View {
     let remaining: Int?
 
@@ -647,10 +673,12 @@ final class App: NSObject, NSApplicationDelegate, NSWindowDelegate, ObservableOb
 
     func renderStatusItem() {
         guard let button = item?.button else { return }
-        let logo = Bundle.module.url(forResource: "chatgptTemplate", withExtension: "png")
-            .flatMap(NSImage.init(contentsOf:))
-        button.image = logo ?? NSImage(systemSymbolName: "circle.hexagongrid.fill", accessibilityDescription: "ChatGPT")
-        button.image?.isTemplate = true
+        if let icon = quotaStatusIcon(remaining: primary?.remaining) {
+            button.image = icon
+        } else {
+            button.image = NSImage(systemSymbolName: "circle.hexagongrid.fill", accessibilityDescription: "ChatGPT")
+            button.image?.isTemplate = true
+        }
         button.title = primary.map { " \($0.remaining)%" } ?? " —%"
         button.setAccessibilityLabel(error ?? AppText.quotaAccessibility(title: AppText.text("5-hour quota"), remaining: primary?.remaining))
         button.toolTip = [
@@ -687,6 +715,10 @@ final class App: NSObject, NSApplicationDelegate, NSWindowDelegate, ObservableOb
 }
 
 if CommandLine.arguments.contains("--self-check") {
+    let emptyStatusIcon = quotaStatusIcon(remaining: 0)
+    let fullStatusIcon = quotaStatusIcon(remaining: 100)
+    assert(emptyStatusIcon?.size == NSSize(width: 18, height: 18))
+    assert(emptyStatusIcon?.tiffRepresentation != fullStatusIcon?.tiffRepresentation)
     assert(WindowLimit(["usedPercent": 47.0])?.remaining == 53)
     assert(WindowLimit(["usedPercent": 105.0])?.remaining == 0)
     assert(WindowLimit(["usedPercent": -5.0])?.remaining == 100)

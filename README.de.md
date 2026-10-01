@@ -14,7 +14,8 @@ Eine schlanke Menüleisten-App für ChatGPT Codex. Prüfe verfügbare Nutzung, R
 
 | Bereich | Funktionen |
 | --- | --- |
-| Menüleiste | ChatGPT-inspiriertes Symbol mit aktuellem 5-Stunden-Limit |
+| Menüleiste | ChatGPT-Knotensymbol, das sich entsprechend dem aktuellen 5-Stunden-Limit füllt |
+| App-Symbol | ChatGPT-Knoten mit flüssigkeitsinspirierter Füllung |
 | Limitstatus | Fortschrittsbalken für 5-Stunden- und Wochenlimits, Wiederherstellungszeiten und verfügbare Rücksetzungen |
 | Fenster | Liquid-Glass-Menüleisten-Popover und separates, verschiebbares Fenster |
 | Aktualisierung | Automatisch jede Minute; Bestätigung vor jeder Rücksetzung |

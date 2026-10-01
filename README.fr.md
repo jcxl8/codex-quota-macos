@@ -14,7 +14,8 @@ Une app légère de barre des menus pour ChatGPT Codex. Consultez les quotas dis
 
 | Rubrique | Fonctions |
 | --- | --- |
-| Barre des menus | Icône inspirée de ChatGPT avec le quota actuel de 5 heures |
+| Barre des menus | L’icône en nœud ChatGPT se remplit selon le quota actuel de 5 heures |
+| Icône de l’app | Symbole ChatGPT avec un remplissage inspiré d’un liquide |
 | État des quotas | Barres de progression pour les quotas de 5 heures et hebdomadaire, heures de récupération et crédits disponibles |
 | Fenêtres | Fenêtre Liquid Glass dans la barre des menus et fenêtre flottante indépendante et déplaçable |
 | Actualisation | Mise à jour automatique chaque minute ; confirmation avant toute réinitialisation |

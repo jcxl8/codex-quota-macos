@@ -14,7 +14,8 @@ A lightweight menu bar app for ChatGPT Codex. See your available usage, reset cr
 
 | Area | Capabilities |
 | --- | --- |
-| Menu bar | ChatGPT-inspired icon combined with your current 5-hour quota |
+| Menu bar | ChatGPT knot icon fills to match the current 5-hour quota |
+| App icon | ChatGPT knot mark with a liquid-inspired fill |
 | Quota status | Progress bars for 5-hour and weekly limits, recovery times, and available reset credits |
 | Windows | Liquid Glass menu bar popover and a separate draggable floating window |
 | Updates | Automatic refresh every minute; confirmation before using a reset credit |

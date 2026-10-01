@@ -14,7 +14,8 @@ Un’app leggera per la barra dei menu di ChatGPT Codex. Controlla i limiti disp
 
 | Area | Funzioni |
 | --- | --- |
-| Barra dei menu | Icona ispirata a ChatGPT con il limite attuale di 5 ore |
+| Barra dei menu | L’icona a nodo di ChatGPT si riempie in base al limite attuale di 5 ore |
+| Icona dell’app | Simbolo ChatGPT con un riempimento ispirato a un liquido |
 | Stato dei limiti | Barre di avanzamento per i limiti di 5 ore e settimanali, tempi di recupero e crediti disponibili |
 | Finestre | Popover Liquid Glass nella barra dei menu e finestra mobile indipendente |
 | Aggiornamenti | Aggiornamento automatico ogni minuto; conferma prima di usare un credito |
