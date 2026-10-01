@@ -14,8 +14,8 @@ Eine schlanke Menüleisten-App für ChatGPT Codex. Prüfe verfügbare Nutzung, R
 
 | Bereich | Funktionen |
 | --- | --- |
-| Menüleiste | ChatGPT-Knotensymbol, das sich entsprechend dem aktuellen 5-Stunden-Limit füllt |
-| App-Symbol | ChatGPT-Knoten mit flüssigkeitsinspirierter Füllung |
+| Menüleiste | Einfarbiger ChatGPT-Knoten: bei 100 % vollständig, bei sinkendem 5-Stunden-Limit von oben nach unten verblassend |
+| App-Symbol | Weiße abgerundete Kachel mit ChatGPT-Knoten in Graphitgrau und einfarbiger Füllstandsanzeige |
 | Limitstatus | Fortschrittsbalken für 5-Stunden- und Wochenlimits, Wiederherstellungszeiten und verfügbare Rücksetzungen |
 | Fenster | Liquid-Glass-Menüleisten-Popover und separates, verschiebbares Fenster |
 | Aktualisierung | Automatisch jede Minute; Bestätigung vor jeder Rücksetzung |
@@ -30,7 +30,7 @@ Erfordert macOS 13 oder neuer. Liquid Glass ist ab macOS 26 verfügbar; ältere 
 
 ## Build
 
-Erfordert macOS und Swift 5.9 oder neuer. Führe das enthaltene Build-Skript im Terminal aus, um die App zu erstellen und die integrierten Prüfungen auszuführen.
+Zum Bauen sind Xcode 26 oder neuer und dessen Icon-Composer-Compiler erforderlich. Erfordert macOS und Swift 5.9 oder neuer. Führe das enthaltene Build-Skript im Terminal aus, um die App zu erstellen und die integrierten Prüfungen auszuführen.
 
 ## Datenschutz
 

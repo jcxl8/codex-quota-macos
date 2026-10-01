@@ -1,0 +1,36 @@
+{
+  "fill": {
+    "solid": "srgb:1,1,1,1"
+  },
+  "groups": [
+    {
+      "layers": [
+        {
+          "image-name": "knot.png",
+          "name": "Quota knot",
+          "position": {
+            "scale": 0.75,
+            "translation-in-points": [
+              0,
+              -24
+            ]
+          },
+          "glass": false
+        }
+      ],
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0
+      },
+      "translucency": {
+        "enabled": false,
+        "value": 0
+      }
+    }
+  ],
+  "supported-platforms": {
+    "squares": [
+      "macOS"
+    ]
+  }
+}

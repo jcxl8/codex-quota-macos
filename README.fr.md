@@ -14,8 +14,8 @@ Une app légère de barre des menus pour ChatGPT Codex. Consultez les quotas dis
 
 | Rubrique | Fonctions |
 | --- | --- |
-| Barre des menus | L’icône en nœud ChatGPT se remplit selon le quota actuel de 5 heures |
-| Icône de l’app | Symbole ChatGPT avec un remplissage inspiré d’un liquide |
+| Barre des menus | Nœud ChatGPT monochrome : complet à 100 %, il s’estompe du haut vers le bas lorsque le quota de 5 heures diminue |
+| Icône de l’app | Tuile blanche arrondie avec un nœud ChatGPT graphite et un remplissage monochrome indiquant le niveau de quota |
 | État des quotas | Barres de progression pour les quotas de 5 heures et hebdomadaire, heures de récupération et crédits disponibles |
 | Fenêtres | Fenêtre Liquid Glass dans la barre des menus et fenêtre flottante indépendante et déplaçable |
 | Actualisation | Mise à jour automatique chaque minute ; confirmation avant toute réinitialisation |
@@ -30,7 +30,7 @@ macOS 13 ou ultérieur est requis. Liquid Glass est disponible à partir de macO
 
 ## Compilation
 
-macOS et Swift 5.9 ou ultérieur sont requis. Exécutez le script de compilation fourni dans Terminal pour créer l’app et lancer ses vérifications intégrées.
+La compilation nécessite Xcode 26 ou ultérieur et son compilateur Icon Composer. macOS et Swift 5.9 ou ultérieur sont requis. Exécutez le script de compilation fourni dans Terminal pour créer l’app et lancer ses vérifications intégrées.
 
 ## Confidentialité
 

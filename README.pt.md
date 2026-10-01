@@ -14,8 +14,8 @@ Uma aplicação leve para a barra de menus do ChatGPT Codex. Consulte os limites
 
 | Área | Funcionalidades |
 | --- | --- |
-| Barra de menus | O ícone em forma de nó do ChatGPT preenche-se conforme o limite atual de 5 horas |
-| Ícone da aplicação | Símbolo ChatGPT com preenchimento inspirado em líquido |
+| Barra de menus | Nó ChatGPT monocromático: completo a 100%, desvanece de cima para baixo à medida que o limite de 5 horas diminui |
+| Ícone da aplicação | Base branca arredondada com nó ChatGPT em grafite e preenchimento monocromático do nível de quota |
 | Estado dos limites | Barras de progresso para limites de 5 horas e semanais, tempos de recuperação e créditos disponíveis |
 | Janelas | Popover Liquid Glass na barra de menus e uma janela flutuante independente e móvel |
 | Atualizações | Atualização automática a cada minuto; confirmação antes de utilizar uma reposição |
@@ -30,7 +30,7 @@ Requer macOS 13 ou posterior. O Liquid Glass está disponível a partir do macOS
 
 ## Compilação
 
-Requer macOS e Swift 5.9 ou posterior. Execute o script de compilação incluído no Terminal para criar a aplicação e executar as verificações integradas.
+A compilação requer Xcode 26 ou posterior e o compilador Icon Composer incluído. Requer macOS e Swift 5.9 ou posterior. Execute o script de compilação incluído no Terminal para criar a aplicação e executar as verificações integradas.
 
 ## Privacidade
 

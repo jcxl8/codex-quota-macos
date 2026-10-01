@@ -14,8 +14,8 @@ A lightweight menu bar app for ChatGPT Codex. See your available usage, reset cr
 
 | Area | Capabilities |
 | --- | --- |
-| Menu bar | ChatGPT knot icon fills to match the current 5-hour quota |
-| App icon | ChatGPT knot mark with a liquid-inspired fill |
+| Menu bar | Monochrome ChatGPT knot: full at 100%, fading from top to bottom as the 5-hour quota decreases |
+| App icon | White rounded tile with a graphite ChatGPT knot and a monochrome quota-level fill |
 | Quota status | Progress bars for 5-hour and weekly limits, recovery times, and available reset credits |
 | Windows | Liquid Glass menu bar popover and a separate draggable floating window |
 | Updates | Automatic refresh every minute; confirmation before using a reset credit |
@@ -30,7 +30,7 @@ Requires macOS 13 or later. Liquid Glass is available on macOS 26 and later; ear
 
 ## Build
 
-Requires macOS and Swift 5.9 or later. Run the included build script from Terminal to create the app and run its built-in checks.
+Building requires Xcode 26 or later with its Icon Composer compiler. Requires macOS and Swift 5.9 or later. Run the included build script from Terminal to create the app and run its built-in checks.
 
 ## Privacy
 

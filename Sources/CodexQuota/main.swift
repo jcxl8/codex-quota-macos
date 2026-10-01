@@ -22,21 +22,24 @@ func quotaStatusIcon(remaining: Int?) -> NSImage? {
     let bounds = NSRect(origin: .zero, size: size)
     let icon = NSImage(size: size)
     icon.lockFocus()
-    NSColor.labelColor.setFill()
+    NSColor.black.withAlphaComponent(0.18).setFill()
     NSBezierPath(rect: bounds).fill()
+
+    let fraction = CGFloat(max(0, min(100, remaining ?? 100))) / 100
+    let height = size.height * fraction
+    if fraction == 1 {
+        NSColor.black.setFill()
+        NSBezierPath(rect: bounds).fill()
+    } else if fraction > 0 {
+        NSColor.black.setFill()
+        NSBezierPath(rect: NSRect(x: 0, y: 0, width: size.width, height: max(0, height - 1))).fill()
+        NSGradient(starting: .black, ending: .black.withAlphaComponent(0.18))?
+            .draw(in: NSRect(x: 0, y: max(0, height - 1), width: size.width, height: min(1, height)), angle: 90)
+    }
     mark.draw(in: bounds, from: .zero, operation: .destinationIn, fraction: 1)
 
-    if let remaining {
-        let fraction = CGFloat(max(0, min(100, remaining))) / 100
-        NSColor.systemBlue.setFill()
-        NSGraphicsContext.current?.compositingOperation = .sourceAtop
-        NSBezierPath(rect: NSRect(x: 0, y: 0, width: size.width, height: size.height * fraction))
-            .fill()
-        NSGraphicsContext.current?.compositingOperation = .sourceOver
-    }
-
     icon.unlockFocus()
-    icon.isTemplate = false
+    icon.isTemplate = true
     return icon
 }
 
@@ -761,7 +764,19 @@ if CommandLine.arguments.contains("--self-check") {
     let emptyStatusIcon = quotaStatusIcon(remaining: 0)
     let fullStatusIcon = quotaStatusIcon(remaining: 100)
     assert(emptyStatusIcon?.size == NSSize(width: 18, height: 18))
+    assert(fullStatusIcon?.isTemplate == true)
     assert(emptyStatusIcon?.tiffRepresentation != fullStatusIcon?.tiffRepresentation)
+    assert(quotaStatusIcon(remaining: 105)?.tiffRepresentation == fullStatusIcon?.tiffRepresentation)
+    assert(quotaStatusIcon(remaining: -5)?.tiffRepresentation == emptyStatusIcon?.tiffRepresentation)
+    let halfIcon = NSBitmapImageRep(data: quotaStatusIcon(remaining: 50)!.tiffRepresentation!)!
+    let fullIcon = NSBitmapImageRep(data: fullStatusIcon!.tiffRepresentation!)!
+    let top = halfIcon.pixelsHigh / 4
+    let bottom = halfIcon.pixelsHigh * 3 / 4
+    let alphaSum: (NSBitmapImageRep, Int) -> CGFloat = { bitmap, y in
+        (0..<bitmap.pixelsWide).reduce(0) { $0 + (bitmap.colorAt(x: $1, y: y)?.alphaComponent ?? 0) }
+    }
+    assert(alphaSum(halfIcon, top) < alphaSum(fullIcon, top) * 0.3)
+    assert(alphaSum(halfIcon, bottom) > alphaSum(fullIcon, bottom) * 0.9)
     assert(WindowLimit(["usedPercent": 47.0])?.remaining == 53)
     assert(WindowLimit(["usedPercent": 105.0])?.remaining == 0)
     assert(WindowLimit(["usedPercent": -5.0])?.remaining == 100)
