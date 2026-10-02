@@ -1,7 +1,7 @@
 <p align="center"><img src="Assets/CodexQuotaIcon.png" width="112" alt="Codex 한도 앱 아이콘"></p>
 
 <h1 align="center">macOS용 Codex 한도</h1>
-<p align="center">ChatGPT Codex 한도를 한눈에 확인하세요.</p>
+<p align="center">ChatGPT Codex 한도를 거의 실시간으로 확인하세요. 매분 자동 갱신되며 언제든 수동으로 새로고침할 수 있습니다.</p>
 <p align="center"><img src="https://img.shields.io/badge/macOS-13%2B-111111?logo=apple&logoColor=white" alt="macOS 13 이상"> <img src="https://img.shields.io/badge/Swift-5.9%2B-F05138?logo=swift&logoColor=white" alt="Swift 5.9 이상"> <img src="https://img.shields.io/badge/version-1.4.1-007AFF" alt="버전 1.4.1"></p>
 
 <p align="center">🇬🇧 <a href="README.md">English</a> · 🇨🇳 <a href="README.zh-CN.md">简体中文</a> · 🇨🇳 <a href="README.zh-TW.md">繁體中文</a> · 🇷🇺 <a href="README.ru.md">Русский</a> · 🇫🇷 <a href="README.fr.md">Français</a> · 🇩🇪 <a href="README.de.md">Deutsch</a> · 🇮🇹 <a href="README.it.md">Italiano</a> · 🇯🇵 <a href="README.ja.md">日本語</a> · 🇰🇷 <a href="README.ko.md">한국어</a> · 🇵🇹 <a href="README.pt.md">Português</a> · 🇪🇸 <a href="README.es.md">Español</a></p>
