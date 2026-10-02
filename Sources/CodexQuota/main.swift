@@ -243,9 +243,29 @@ struct QuotaDashboard: View {
     }
 
     private var header: some View {
+        ViewThatFits(in: .horizontal) {
+            HStack(spacing: 8) {
+                draggableHeading
+                dragRegion
+                headerControls
+            }
+            .fixedSize(horizontal: true, vertical: false)
+
+            VStack(alignment: .leading, spacing: 10) {
+                HStack {
+                    draggableHeading
+                    dragRegion
+                }
+                HStack {
+                    Spacer(minLength: 0)
+                    headerControls
+                }
+            }
+        }
+    }
+
+    private var headerControls: some View {
         HStack(spacing: 8) {
-            draggableHeading
-            dragRegion
             AdaptiveGlassButton(action: app.refresh) {
                 Label {
                     Text(verbatim: AppText.text("Refresh"))
@@ -284,6 +304,7 @@ struct QuotaDashboard: View {
             .accessibilityLabel(Text(verbatim: AppText.text("Quit")))
             .help(AppText.text("Quit Codex Quota"))
         }
+        .fixedSize(horizontal: true, vertical: false)
     }
 
     private var titleContent: some View {
@@ -346,6 +367,7 @@ struct QuotaDashboard: View {
             VStack(alignment: .leading, spacing: 3) {
                 Label {
                     Text(verbatim: AppText.text("Reset credits"))
+                        .fixedSize(horizontal: false, vertical: true)
                 } icon: {
                     Image(systemName: "arrow.uturn.backward")
                 }
@@ -364,6 +386,7 @@ struct QuotaDashboard: View {
                 .font(.system(size: 14, weight: .semibold))
                 .padding(.horizontal, 4)
             }
+            .fixedSize(horizontal: true, vertical: false)
             .controlSize(.regular)
             .buttonBorderShape(.roundedRectangle)
             .disabled(!app.canConsumeReset)
@@ -403,6 +426,7 @@ struct QuotaDashboard: View {
             .menuStyle(.borderlessButton)
             .accessibilityLabel(Text(verbatim: AppText.text("Settings")))
             .help(AppText.text("Settings"))
+            .fixedSize()
         }
         .padding(.horizontal, 2)
     }

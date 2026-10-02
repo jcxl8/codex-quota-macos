@@ -2,7 +2,7 @@
 
 <h1 align="center">Codex 額度監視器（macOS）</h1>
 <p align="center">即時查看 ChatGPT Codex 額度——每分鐘自動重新整理，也可隨時手動重新整理。</p>
-<p align="center"><img src="https://img.shields.io/badge/macOS-13%2B-111111?logo=apple&logoColor=white" alt="macOS 13 或更新版本"> <img src="https://img.shields.io/badge/Swift-5.9%2B-F05138?logo=swift&logoColor=white" alt="Swift 5.9 或更新版本"> <img src="https://img.shields.io/badge/version-1.4.1-007AFF" alt="版本 1.4.1"></p>
+<p align="center"><img src="https://img.shields.io/badge/macOS-13%2B-111111?logo=apple&logoColor=white" alt="macOS 13 或更新版本"> <img src="https://img.shields.io/badge/Swift-5.9%2B-F05138?logo=swift&logoColor=white" alt="Swift 5.9 或更新版本"> <img src="https://img.shields.io/badge/version-1.4.2-007AFF" alt="版本 1.4.2"></p>
 
 <p align="center">🇬🇧 <a href="README.md">English</a> · 🇨🇳 <a href="README.zh-CN.md">简体中文</a> · 🇨🇳 <a href="README.zh-TW.md">繁體中文</a> · 🇷🇺 <a href="README.ru.md">Русский</a> · 🇫🇷 <a href="README.fr.md">Français</a> · 🇩🇪 <a href="README.de.md">Deutsch</a> · 🇮🇹 <a href="README.it.md">Italiano</a> · 🇯🇵 <a href="README.ja.md">日本語</a> · 🇰🇷 <a href="README.ko.md">한국어</a> · 🇵🇹 <a href="README.pt.md">Português</a> · 🇪🇸 <a href="README.es.md">Español</a></p>
 
@@ -14,9 +14,9 @@
 
 | 狀態列彈出視窗 | 獨立浮動視窗 |
 | --- | --- |
-| <img src="Assets/Screenshots/menu-bar-popover.png" width="390" alt="狀態列彈出視窗"> | <img src="Assets/Screenshots/floating-window.png" width="390" alt="獨立浮動視窗"> |
+| <img src="Assets/Screenshots/zh-Hant-menu-bar-popover.png" width="390" alt="狀態列彈出視窗"> | <img src="Assets/Screenshots/zh-Hant-floating-window.png" width="390" alt="獨立浮動視窗"> |
 
-截圖展示簡體中文介面，App 會依 macOS 語言偏好自動切換語言。
+App 會依 macOS 語言偏好自動切換語言。
 
 ## 主要功能
 

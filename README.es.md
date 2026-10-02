@@ -2,7 +2,7 @@
 
 <h1 align="center">Cuota de Codex para macOS</h1>
 <p align="center">Consulta la cuota de ChatGPT Codex casi en tiempo real: actualización automática cada minuto y manual cuando quieras.</p>
-<p align="center"><img src="https://img.shields.io/badge/macOS-13%2B-111111?logo=apple&logoColor=white" alt="macOS 13 o posterior"> <img src="https://img.shields.io/badge/Swift-5.9%2B-F05138?logo=swift&logoColor=white" alt="Swift 5.9 o posterior"> <img src="https://img.shields.io/badge/version-1.4.1-007AFF" alt="Versión 1.4.1"></p>
+<p align="center"><img src="https://img.shields.io/badge/macOS-13%2B-111111?logo=apple&logoColor=white" alt="macOS 13 o posterior"> <img src="https://img.shields.io/badge/Swift-5.9%2B-F05138?logo=swift&logoColor=white" alt="Swift 5.9 o posterior"> <img src="https://img.shields.io/badge/version-1.4.2-007AFF" alt="Versión 1.4.2"></p>
 
 <p align="center">🇬🇧 <a href="README.md">English</a> · 🇨🇳 <a href="README.zh-CN.md">简体中文</a> · 🇨🇳 <a href="README.zh-TW.md">繁體中文</a> · 🇷🇺 <a href="README.ru.md">Русский</a> · 🇫🇷 <a href="README.fr.md">Français</a> · 🇩🇪 <a href="README.de.md">Deutsch</a> · 🇮🇹 <a href="README.it.md">Italiano</a> · 🇯🇵 <a href="README.ja.md">日本語</a> · 🇰🇷 <a href="README.ko.md">한국어</a> · 🇵🇹 <a href="README.pt.md">Português</a> · 🇪🇸 <a href="README.es.md">Español</a></p>
 
@@ -14,9 +14,9 @@ Una aplicación ligera para la barra de menús de ChatGPT Codex. Consulta la cuo
 
 | Ventana emergente de la barra de menús | Ventana flotante |
 | --- | --- |
-| <img src="Assets/Screenshots/menu-bar-popover.png" width="390" alt="Ventana emergente de la barra de menús"> | <img src="Assets/Screenshots/floating-window.png" width="390" alt="Ventana flotante"> |
+| <img src="Assets/Screenshots/es-menu-bar-popover.png" width="390" alt="Ventana emergente de la barra de menús"> | <img src="Assets/Screenshots/es-floating-window.png" width="390" alt="Ventana flotante"> |
 
-Las capturas muestran la interfaz en chino simplificado. La app sigue las preferencias de idioma de macOS.
+La app sigue las preferencias de idioma de macOS.
 
 ## Funciones principales
 

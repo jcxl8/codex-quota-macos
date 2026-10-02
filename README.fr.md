@@ -2,7 +2,7 @@
 
 <h1 align="center">Quota Codex pour macOS</h1>
 <p align="center">Suivez les quotas ChatGPT Codex en quasi-temps réel : actualisation automatique chaque minute et manuelle à tout moment.</p>
-<p align="center"><img src="https://img.shields.io/badge/macOS-13%2B-111111?logo=apple&logoColor=white" alt="macOS 13 ou ultérieur"> <img src="https://img.shields.io/badge/Swift-5.9%2B-F05138?logo=swift&logoColor=white" alt="Swift 5.9 ou ultérieur"> <img src="https://img.shields.io/badge/version-1.4.1-007AFF" alt="Version 1.4.1"></p>
+<p align="center"><img src="https://img.shields.io/badge/macOS-13%2B-111111?logo=apple&logoColor=white" alt="macOS 13 ou ultérieur"> <img src="https://img.shields.io/badge/Swift-5.9%2B-F05138?logo=swift&logoColor=white" alt="Swift 5.9 ou ultérieur"> <img src="https://img.shields.io/badge/version-1.4.2-007AFF" alt="Version 1.4.2"></p>
 
 <p align="center">🇬🇧 <a href="README.md">English</a> · 🇨🇳 <a href="README.zh-CN.md">简体中文</a> · 🇨🇳 <a href="README.zh-TW.md">繁體中文</a> · 🇷🇺 <a href="README.ru.md">Русский</a> · 🇫🇷 <a href="README.fr.md">Français</a> · 🇩🇪 <a href="README.de.md">Deutsch</a> · 🇮🇹 <a href="README.it.md">Italiano</a> · 🇯🇵 <a href="README.ja.md">日本語</a> · 🇰🇷 <a href="README.ko.md">한국어</a> · 🇵🇹 <a href="README.pt.md">Português</a> · 🇪🇸 <a href="README.es.md">Español</a></p>
 
@@ -14,9 +14,9 @@ Une app légère de barre des menus pour ChatGPT Codex. Consultez les quotas dis
 
 | Fenêtre de la barre de menus | Fenêtre flottante |
 | --- | --- |
-| <img src="Assets/Screenshots/menu-bar-popover.png" width="390" alt="Fenêtre de la barre de menus"> | <img src="Assets/Screenshots/floating-window.png" width="390" alt="Fenêtre flottante"> |
+| <img src="Assets/Screenshots/fr-menu-bar-popover.png" width="390" alt="Fenêtre de la barre de menus"> | <img src="Assets/Screenshots/fr-floating-window.png" width="390" alt="Fenêtre flottante"> |
 
-Les captures montrent l’interface en chinois simplifié. L’app suit les préférences linguistiques de macOS.
+L’app suit les préférences linguistiques de macOS.
 
 ## Fonctionnalités principales
 
