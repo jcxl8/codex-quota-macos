@@ -33,7 +33,7 @@ La app sigue las preferencias de idioma de macOS.
 ## Instalación
 
 1. Primero instala la aplicación de escritorio ChatGPT e inicia sesión.
-2. Descarga [CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/raw/refs/heads/main/CodexQuota-macOS.zip).
+2. Descarga [CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/releases/latest/download/CodexQuota-macOS.zip).
 3. En Finder, haz doble clic en el ZIP para extraer `CodexQuota.app`. Finder puede mostrar el nombre localizado, **Cuota de Codex**.
 4. Arrastra la app extraída a la carpeta **Aplicaciones (Applications)** de Finder. Puedes abrir esa carpeta con **⌘⇧A**. Instálala antes de iniciarla; no la abras directamente desde Descargas ni desde la carpeta de extracción.
 5. Abre la app desde **Aplicaciones**. El icono y el porcentaje aparecen en la barra de menús; es normal que no tenga un icono en el Dock.
@@ -42,6 +42,31 @@ La app sigue las preferencias de idioma de macOS.
 La app está firmada localmente y no está notarizada por Apple. Si macOS bloquea el primer inicio, abre **Ajustes del Sistema → Privacidad y seguridad**, busca el aviso de la app bloqueada, selecciona **Abrir igualmente** y confirma el siguiente mensaje. Usa este procedimiento únicamente para la app descargada de este repositorio.
 
 Requiere macOS 13 o posterior. Liquid Glass está disponible a partir de macOS 26; las versiones anteriores utilizan el material del sistema.
+
+### Instalar desde Terminal
+
+Para una primera instalación en un Mac con Apple Silicon, pega este bloque en Terminal. Descarga la versión 1.4.2 de GitHub Releases, verifica su suma SHA-256 y la instala en Aplicaciones. Primero instala ChatGPT e inicia sesión.
+
+```sh
+(
+  set -eu
+  app_target="/Applications/CodexQuota.app"
+  if [ -e "$app_target" ] || [ -L "$app_target" ]; then
+    printf '%s\n' 'Ya está instalada. Cierra la app y sigue los pasos de Finder anteriores para sustituir la versión antigua.' >&2
+    exit 1
+  fi
+  download_dir="$(mktemp -d)"
+  cd "$download_dir"
+  curl -fL --retry 3 -O 'https://github.com/jcxl8/codex-quota-macos/releases/download/v1.4.2/CodexQuota-macOS.zip'
+  curl -fL --retry 3 -O 'https://github.com/jcxl8/codex-quota-macos/releases/download/v1.4.2/CodexQuota-macOS.zip.sha256'
+  shasum -a 256 -c CodexQuota-macOS.zip.sha256
+  ditto -x -k CodexQuota-macOS.zip .
+  ditto CodexQuota.app "$app_target"
+  printf '%s\n' 'Instalación completada. Abre CodexQuota.app desde Aplicaciones.'
+)
+```
+
+Después de instalarla, abre la app desde Aplicaciones. Se aplican las instrucciones de seguridad del primer inicio indicadas arriba. Este paquete admite Apple Silicon (arm64), no Macs Intel.
 
 ## Compilación
 

@@ -33,7 +33,7 @@ The app follows your macOS language preferences.
 ## Installation
 
 1. Install the ChatGPT desktop app and sign in first.
-2. Download [CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/raw/refs/heads/main/CodexQuota-macOS.zip).
+2. Download [CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/releases/latest/download/CodexQuota-macOS.zip).
 3. In Finder, double-click the ZIP to extract `CodexQuota.app`. Finder may display its localized name.
 4. Drag the extracted app into Finder’s **Applications** folder. Press **⌘⇧A** in Finder to open that folder. Install it there before launching; do not run it directly from Downloads or the extracted folder.
 5. Open the app from **Applications**. Its icon and percentage appear in the menu bar; no Dock icon is expected.
@@ -42,6 +42,31 @@ The app follows your macOS language preferences.
 The app is locally signed and not notarized by Apple. If macOS blocks the first launch, open **System Settings → Privacy & Security**, find the blocked-app notice, choose **Open Anyway**, and confirm the next prompt. Only do this for the app you downloaded from this repository.
 
 Requires macOS 13 or later. Liquid Glass is available on macOS 26 and later; earlier versions use the system material.
+
+### Install from Terminal
+
+For a first installation on an Apple Silicon Mac, paste this block into Terminal. It downloads version 1.4.2 from GitHub Releases, verifies its SHA-256 checksum, and installs it in Applications. Install ChatGPT and sign in first.
+
+```sh
+(
+  set -eu
+  app_target="/Applications/CodexQuota.app"
+  if [ -e "$app_target" ] || [ -L "$app_target" ]; then
+    printf '%s\n' 'Already installed. Quit the app and use the Finder steps above to replace the old version.' >&2
+    exit 1
+  fi
+  download_dir="$(mktemp -d)"
+  cd "$download_dir"
+  curl -fL --retry 3 -O 'https://github.com/jcxl8/codex-quota-macos/releases/download/v1.4.2/CodexQuota-macOS.zip'
+  curl -fL --retry 3 -O 'https://github.com/jcxl8/codex-quota-macos/releases/download/v1.4.2/CodexQuota-macOS.zip.sha256'
+  shasum -a 256 -c CodexQuota-macOS.zip.sha256
+  ditto -x -k CodexQuota-macOS.zip .
+  ditto CodexQuota.app "$app_target"
+  printf '%s\n' 'Installed. Open CodexQuota.app from Applications.'
+)
+```
+
+After installation, open the app from Applications. The same first-launch security instructions above apply. This installer supports Apple Silicon (arm64), not Intel Macs.
 
 ## Build
 

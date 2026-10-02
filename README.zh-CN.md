@@ -33,7 +33,7 @@ App 会根据 macOS 语言偏好自动切换语言。
 ## 安装
 
 1. 先安装 ChatGPT 桌面应用，并登录账号。
-2. 下载 [CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/raw/refs/heads/main/CodexQuota-macOS.zip)。
+2. 下载 [CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/releases/latest/download/CodexQuota-macOS.zip)。
 3. 在 Finder 中双击 ZIP 压缩包，解压得到 `CodexQuota.app`。Finder 可能按系统语言显示本地化名称。
 4. 将解压后的 App **拖放到 Finder 的 Applications（应用程序）文件夹**。在 Finder 中按 **⌘⇧A** 可打开该文件夹。先完成安装，再启动；不要直接从下载目录或解压目录打开 App。
 5. 从 **Applications（应用程序）** 文件夹打开 App。图标与百分比会出现在状态栏；这是菜单栏应用，没有 Dock 图标属于正常现象。
@@ -42,6 +42,31 @@ App 会根据 macOS 语言偏好自动切换语言。
 应用使用本地签名，尚未经过 Apple 公证。若 macOS 首次阻止打开，请进入 **系统设置 → 隐私与安全性**，找到被阻止应用的提示，点击 **仍要打开**，并确认后续提示。仅对从本仓库下载的应用执行此操作。
 
 支持 macOS 13 及更新版本。macOS 26 及更新版本使用 Liquid Glass，较早版本使用系统材质。
+
+### 通过终端安装
+
+首次在 Apple Silicon Mac 上安装时，将下面整段命令粘贴到终端。命令会从 GitHub Releases 下载 1.4.2 版，验证 SHA-256 校验值，并安装到 Applications。请先安装 ChatGPT 并登录。
+
+```sh
+(
+  set -eu
+  app_target="/Applications/CodexQuota.app"
+  if [ -e "$app_target" ] || [ -L "$app_target" ]; then
+    printf '%s\n' '已安装。请退出 App，并按上方 Finder 步骤替换旧版。' >&2
+    exit 1
+  fi
+  download_dir="$(mktemp -d)"
+  cd "$download_dir"
+  curl -fL --retry 3 -O 'https://github.com/jcxl8/codex-quota-macos/releases/download/v1.4.2/CodexQuota-macOS.zip'
+  curl -fL --retry 3 -O 'https://github.com/jcxl8/codex-quota-macos/releases/download/v1.4.2/CodexQuota-macOS.zip.sha256'
+  shasum -a 256 -c CodexQuota-macOS.zip.sha256
+  ditto -x -k CodexQuota-macOS.zip .
+  ditto CodexQuota.app "$app_target"
+  printf '%s\n' '安装完成。请从 Applications 打开 CodexQuota.app。'
+)
+```
+
+安装后请从 Applications（应用程序）打开 App；首次启动的安全提示处理方法同上。此安装包支持 Apple Silicon（arm64），不支持 Intel Mac。
 
 ## 构建
 

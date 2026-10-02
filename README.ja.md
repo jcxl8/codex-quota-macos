@@ -33,7 +33,7 @@ ChatGPT Codex 用の軽量なメニューバーアプリです。作業を中断
 ## インストール
 
 1. 先にChatGPTデスクトップアプリをインストールし、サインインします。
-2. [CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/raw/refs/heads/main/CodexQuota-macOS.zip) をダウンロードします。
+2. [CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/releases/latest/download/CodexQuota-macOS.zip) をダウンロードします。
 3. FinderでZIPをダブルクリックし、`CodexQuota.app` を展開します。Finderにはローカライズされた名前が表示される場合があります。
 4. 展開したアプリをFinderの **Applications（アプリケーション）** フォルダへドラッグします。**⌘⇧A** でこのフォルダを開けます。インストールしてから起動し、ダウンロード先や展開先から直接起動しないでください。
 5. **アプリケーション** フォルダからアプリを開きます。アイコンと残りの割合はメニューバーに表示されます。Dockにアイコンが出ないのは正常です。
@@ -42,6 +42,31 @@ ChatGPT Codex 用の軽量なメニューバーアプリです。作業を中断
 アプリはローカル署名されており、Appleの公証は受けていません。初回起動がブロックされた場合は、**システム設定 → プライバシーとセキュリティ** でブロックされたアプリの通知を探し、**このまま開く** を選択して確認します。この手順は本リポジトリからダウンロードしたアプリにのみ使用してください。
 
 macOS 13 以降が必要です。macOS 26 以降では Liquid Glass を使用し、それ以前のバージョンではシステムマテリアルを使用します。
+
+### ターミナルからインストール
+
+Apple Silicon Mac に初めてインストールする場合、以下のコマンド全体をターミナルに貼り付けてください。GitHub Releases からバージョン 1.4.2 をダウンロードし、SHA-256 を検証して Applications にインストールします。先に ChatGPT をインストールしてログインしてください。
+
+```sh
+(
+  set -eu
+  app_target="/Applications/CodexQuota.app"
+  if [ -e "$app_target" ] || [ -L "$app_target" ]; then
+    printf '%s\n' 'インストール済みです。アプリを終了し、上記の Finder の手順で旧バージョンを置き換えてください。' >&2
+    exit 1
+  fi
+  download_dir="$(mktemp -d)"
+  cd "$download_dir"
+  curl -fL --retry 3 -O 'https://github.com/jcxl8/codex-quota-macos/releases/download/v1.4.2/CodexQuota-macOS.zip'
+  curl -fL --retry 3 -O 'https://github.com/jcxl8/codex-quota-macos/releases/download/v1.4.2/CodexQuota-macOS.zip.sha256'
+  shasum -a 256 -c CodexQuota-macOS.zip.sha256
+  ditto -x -k CodexQuota-macOS.zip .
+  ditto CodexQuota.app "$app_target"
+  printf '%s\n' 'インストール完了。Applications から CodexQuota.app を開いてください。'
+)
+```
+
+インストール後は「アプリケーション」から起動してください。初回起動時のセキュリティ設定は上記と同じです。このパッケージは Apple Silicon（arm64）用で、Intel Mac には対応していません。
 
 ## ビルド
 

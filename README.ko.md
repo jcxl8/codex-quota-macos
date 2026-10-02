@@ -33,7 +33,7 @@ ChatGPT Codex를 위한 가벼운 메뉴 막대 앱입니다. 작업을 방해�
 ## 설치
 
 1. 먼저 ChatGPT 데스크톱 앱을 설치하고 로그인하세요.
-2. [CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/raw/refs/heads/main/CodexQuota-macOS.zip)을 다운로드하세요.
+2. [CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/releases/latest/download/CodexQuota-macOS.zip)을 다운로드하세요.
 3. Finder에서 ZIP을 두 번 클릭해 `CodexQuota.app`을 압축 해제하세요. Finder에는 현지화된 앱 이름이 표시될 수 있습니다.
 4. 압축 해제한 앱을 Finder의 **Applications(응용 프로그램)** 폴더로 드래그하세요. **⌘⇧A**를 누르면 이 폴더가 열립니다. 먼저 설치한 뒤 실행하고, 다운로드 또는 압축 해제 폴더에서 바로 실행하지 마세요.
 5. **응용 프로그램** 폴더에서 앱을 여세요. 아이콘과 백분율은 메뉴 막대에 표시됩니다. Dock에 아이콘이 없는 것은 정상입니다.
@@ -42,6 +42,31 @@ ChatGPT Codex를 위한 가벼운 메뉴 막대 앱입니다. 작업을 방해�
 앱은 로컬 서명되어 있으며 Apple 공증은 받지 않았습니다. macOS가 첫 실행을 차단하면 **시스템 설정 → 개인정보 보호 및 보안**에서 앱 차단 안내를 찾아 **확인 없이 열기**를 선택하고 다음 안내를 확인하세요. 이 저장소에서 다운로드한 앱에만 이 절차를 사용하세요.
 
 macOS 13 이상이 필요합니다. macOS 26 이상에서는 Liquid Glass를 사용하고, 이전 버전에서는 시스템 머티리얼을 사용합니다.
+
+### 터미널에서 설치
+
+Apple Silicon Mac에 처음 설치할 때 아래 명령 전체를 터미널에 붙여 넣으세요. GitHub Releases에서 1.4.2 버전을 다운로드하고 SHA-256 체크섬을 검증한 뒤 응용 프로그램 폴더에 설치합니다. 먼저 ChatGPT를 설치하고 로그인하세요.
+
+```sh
+(
+  set -eu
+  app_target="/Applications/CodexQuota.app"
+  if [ -e "$app_target" ] || [ -L "$app_target" ]; then
+    printf '%s\n' '이미 설치되어 있습니다. 앱을 종료한 뒤 위의 Finder 단계에 따라 이전 버전을 교체하세요.' >&2
+    exit 1
+  fi
+  download_dir="$(mktemp -d)"
+  cd "$download_dir"
+  curl -fL --retry 3 -O 'https://github.com/jcxl8/codex-quota-macos/releases/download/v1.4.2/CodexQuota-macOS.zip'
+  curl -fL --retry 3 -O 'https://github.com/jcxl8/codex-quota-macos/releases/download/v1.4.2/CodexQuota-macOS.zip.sha256'
+  shasum -a 256 -c CodexQuota-macOS.zip.sha256
+  ditto -x -k CodexQuota-macOS.zip .
+  ditto CodexQuota.app "$app_target"
+  printf '%s\n' '설치 완료. 응용 프로그램에서 CodexQuota.app을 여세요.'
+)
+```
+
+설치 후 응용 프로그램 폴더에서 앱을 여세요. 첫 실행 보안 안내는 위와 같습니다. 이 패키지는 Apple Silicon(arm64)을 지원하며 Intel Mac은 지원하지 않습니다.
 
 ## 빌드
 
