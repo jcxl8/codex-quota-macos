@@ -10,6 +10,14 @@
 
 A lightweight menu bar app for ChatGPT Codex. See your available usage, reset credits, and recovery times without interrupting your work.
 
+## Screenshots
+
+| Menu bar popover | Floating window |
+| --- | --- |
+| <img src="Assets/Screenshots/menu-bar-popover.png" width="390" alt="Menu bar popover"> | <img src="Assets/Screenshots/floating-window.png" width="390" alt="Floating window"> |
+
+Screenshots show the Simplified Chinese interface. The app follows your macOS language preferences.
+
 ## Key Features
 
 | Area | Capabilities |

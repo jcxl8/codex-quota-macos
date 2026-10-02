@@ -10,6 +10,14 @@
 
 Uma aplicação leve para a barra de menus do ChatGPT Codex. Consulte os limites disponíveis, os créditos de reposição e os tempos de recuperação sem interromper o trabalho.
 
+## Capturas de ecrã
+
+| Janela da barra de menus | Janela flutuante |
+| --- | --- |
+| <img src="Assets/Screenshots/menu-bar-popover.png" width="390" alt="Janela da barra de menus"> | <img src="Assets/Screenshots/floating-window.png" width="390" alt="Janela flutuante"> |
+
+As capturas mostram a interface em chinês simplificado. A app segue as preferências de idioma do macOS.
+
 ## Funcionalidades principais
 
 | Área | Funcionalidades |

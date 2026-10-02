@@ -10,6 +10,14 @@
 
 Una aplicación ligera para la barra de menús de ChatGPT Codex. Consulta la cuota disponible, las oportunidades de restablecimiento y las horas de recuperación sin interrumpir tu trabajo.
 
+## Capturas de pantalla
+
+| Ventana emergente de la barra de menús | Ventana flotante |
+| --- | --- |
+| <img src="Assets/Screenshots/menu-bar-popover.png" width="390" alt="Ventana emergente de la barra de menús"> | <img src="Assets/Screenshots/floating-window.png" width="390" alt="Ventana flotante"> |
+
+Las capturas muestran la interfaz en chino simplificado. La app sigue las preferencias de idioma de macOS.
+
 ## Funciones principales
 
 | Área | Funciones |

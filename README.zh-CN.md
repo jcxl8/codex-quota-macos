@@ -10,6 +10,14 @@
 
 轻量级 ChatGPT Codex 菜单栏应用。无需中断工作，即可查看可用额度、重置机会和恢复时间。
 
+## 界面截图
+
+| 状态栏弹窗 | 独立浮窗 |
+| --- | --- |
+| <img src="Assets/Screenshots/menu-bar-popover.png" width="390" alt="状态栏弹窗"> | <img src="Assets/Screenshots/floating-window.png" width="390" alt="独立浮窗"> |
+
+截图展示简体中文界面，App 会根据 macOS 语言偏好自动切换语言。
+
 ## 主要功能
 
 | 区域 | 功能 |

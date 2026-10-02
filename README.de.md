@@ -10,6 +10,14 @@
 
 Eine schlanke Menüleisten-App für ChatGPT Codex. Prüfe verfügbare Nutzung, Rücksetzoptionen und Wiederherstellungszeiten, ohne deine Arbeit zu unterbrechen.
 
+## Screenshots
+
+| Menüleisten-Popover | Schwebendes Fenster |
+| --- | --- |
+| <img src="Assets/Screenshots/menu-bar-popover.png" width="390" alt="Menüleisten-Popover"> | <img src="Assets/Screenshots/floating-window.png" width="390" alt="Schwebendes Fenster"> |
+
+Die Screenshots zeigen die Oberfläche auf vereinfachtem Chinesisch. Die App folgt den Spracheinstellungen von macOS.
+
 ## Hauptfunktionen
 
 | Bereich | Funktionen |

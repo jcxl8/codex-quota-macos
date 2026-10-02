@@ -10,6 +10,14 @@
 
 ChatGPT Codex를 위한 가벼운 메뉴 막대 앱입니다. 작업을 방해받지 않고 사용 가능한 한도, 초기화 횟수, 회복 시간을 확인할 수 있습니다.
 
+## 스크린샷
+
+| 메뉴 막대 팝오버 | 독립 플로팅 창 |
+| --- | --- |
+| <img src="Assets/Screenshots/menu-bar-popover.png" width="390" alt="메뉴 막대 팝오버"> | <img src="Assets/Screenshots/floating-window.png" width="390" alt="독립 플로팅 창"> |
+
+스크린샷은 중국어 간체 화면입니다. 앱은 macOS 언어 설정에 따라 표시 언어를 선택합니다.
+
 ## 주요 기능
 
 | 항목 | 기능 |

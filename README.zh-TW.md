@@ -10,6 +10,14 @@
 
 輕量級 ChatGPT Codex 選單列應用程式。無須中斷工作，即可查看可用額度、重置機會和恢復時間。
 
+## 介面截圖
+
+| 狀態列彈出視窗 | 獨立浮動視窗 |
+| --- | --- |
+| <img src="Assets/Screenshots/menu-bar-popover.png" width="390" alt="狀態列彈出視窗"> | <img src="Assets/Screenshots/floating-window.png" width="390" alt="獨立浮動視窗"> |
+
+截圖展示簡體中文介面，App 會依 macOS 語言偏好自動切換語言。
+
 ## 主要功能
 
 | 區域 | 功能 |

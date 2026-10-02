@@ -10,6 +10,14 @@
 
 Un’app leggera per la barra dei menu di ChatGPT Codex. Controlla i limiti disponibili, i crediti di ripristino e i tempi di recupero senza interrompere il lavoro.
 
+## Schermate
+
+| Finestra della barra dei menu | Finestra flottante |
+| --- | --- |
+| <img src="Assets/Screenshots/menu-bar-popover.png" width="390" alt="Finestra della barra dei menu"> | <img src="Assets/Screenshots/floating-window.png" width="390" alt="Finestra flottante"> |
+
+Le schermate mostrano l’interfaccia in cinese semplificato. L’app segue le preferenze di lingua di macOS.
+
 ## Funzionalità principali
 
 | Area | Funzioni |

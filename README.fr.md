@@ -10,6 +10,14 @@
 
 Une app légère de barre des menus pour ChatGPT Codex. Consultez les quotas disponibles, les crédits de réinitialisation et les heures de récupération sans interrompre votre travail.
 
+## Captures d’écran
+
+| Fenêtre de la barre de menus | Fenêtre flottante |
+| --- | --- |
+| <img src="Assets/Screenshots/menu-bar-popover.png" width="390" alt="Fenêtre de la barre de menus"> | <img src="Assets/Screenshots/floating-window.png" width="390" alt="Fenêtre flottante"> |
+
+Les captures montrent l’interface en chinois simplifié. L’app suit les préférences linguistiques de macOS.
+
 ## Fonctionnalités principales
 
 | Rubrique | Fonctions |

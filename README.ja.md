@@ -10,6 +10,14 @@
 
 ChatGPT Codex 用の軽量なメニューバーアプリです。作業を中断せずに、利用可能な枠、リセット権、回復時刻を確認できます。
 
+## スクリーンショット
+
+| メニューバーのポップオーバー | フローティングウインドウ |
+| --- | --- |
+| <img src="Assets/Screenshots/menu-bar-popover.png" width="390" alt="メニューバーのポップオーバー"> | <img src="Assets/Screenshots/floating-window.png" width="390" alt="フローティングウインドウ"> |
+
+画像は簡体字中国語の画面です。アプリは macOS の言語設定に従って表示言語を切り替えます。
+
 ## 主な機能
 
 | 項目 | 内容 |
