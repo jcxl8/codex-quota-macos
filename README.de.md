@@ -2,9 +2,9 @@
 
 <h1 align="center">Codex-Limit für macOS</h1>
 <p align="center">Deine ChatGPT-Codex-Limits auf einen Blick.</p>
-<p align="center"><img src="https://img.shields.io/badge/macOS-13%2B-111111?logo=apple&logoColor=white" alt="macOS 13 oder neuer"> <img src="https://img.shields.io/badge/Swift-5.9%2B-F05138?logo=swift&logoColor=white" alt="Swift 5.9 oder neuer"> <img src="https://img.shields.io/badge/version-1.4.0-007AFF" alt="Version 1.4.0"></p>
+<p align="center"><img src="https://img.shields.io/badge/macOS-13%2B-111111?logo=apple&logoColor=white" alt="macOS 13 oder neuer"> <img src="https://img.shields.io/badge/Swift-5.9%2B-F05138?logo=swift&logoColor=white" alt="Swift 5.9 oder neuer"> <img src="https://img.shields.io/badge/version-1.4.1-007AFF" alt="Version 1.4.1"></p>
 
-<p align="center">🇬🇧 <a href="README.md">English</a> · 🇨🇳 <a href="README.zh-CN.md">简体中文</a> · 🇨🇳 <a href="README.zh-TW.md">繁體中文</a> · 🇷🇺 <a href="README.ru.md">Русский</a> · 🇫🇷 <a href="README.fr.md">Français</a> · 🇩🇪 <a href="README.de.md">Deutsch</a> · 🇮🇹 <a href="README.it.md">Italiano</a> · 🇯🇵 <a href="README.ja.md">日本語</a> · 🇰🇷 <a href="README.ko.md">한국어</a> · 🇵🇹 <a href="README.pt.md">Português</a></p>
+<p align="center">🇬🇧 <a href="README.md">English</a> · 🇨🇳 <a href="README.zh-CN.md">简体中文</a> · 🇨🇳 <a href="README.zh-TW.md">繁體中文</a> · 🇷🇺 <a href="README.ru.md">Русский</a> · 🇫🇷 <a href="README.fr.md">Français</a> · 🇩🇪 <a href="README.de.md">Deutsch</a> · 🇮🇹 <a href="README.it.md">Italiano</a> · 🇯🇵 <a href="README.ja.md">日本語</a> · 🇰🇷 <a href="README.ko.md">한국어</a> · 🇵🇹 <a href="README.pt.md">Português</a> · 🇪🇸 <a href="README.es.md">Español</a></p>
 
 ## Überblick
 
@@ -20,11 +20,18 @@ Eine schlanke Menüleisten-App für ChatGPT Codex. Prüfe verfügbare Nutzung, R
 | Fenster | Liquid-Glass-Menüleisten-Popover und separates, verschiebbares Fenster |
 | Aktualisierung | Automatisch jede Minute; Bestätigung vor jeder Rücksetzung |
 | Start | Ein optionaler lokaler Agent öffnet die App beim Start von ChatGPT |
-| Sprachen | Englisch, vereinfachtes und traditionelles Chinesisch, Russisch, Französisch, Deutsch, Italienisch, Japanisch, Koreanisch und Portugiesisch |
+| Sprachen | Englisch, vereinfachtes und traditionelles Chinesisch, Russisch, Französisch, Deutsch, Italienisch, Japanisch, Koreanisch, Portugiesisch und Spanisch |
 
 ## Installation
 
-Lade [CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/raw/refs/heads/main/CodexQuota-macOS.zip) herunter, entpacke die Datei und öffne CodexQuota.app. Der Finder zeigt den App-Namen in der Systemsprache an. Aktiviere zum Öffnen mit ChatGPT in den Einstellungen der App die Option Beim Start von ChatGPT öffnen. Falls macOS den ersten Start blockiert, klicke im Finder bei gedrückter Ctrl-Taste auf die App und wähle Öffnen.
+1. Installiere zuerst die ChatGPT-Desktop-App und melde dich an.
+2. Lade [CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/raw/refs/heads/main/CodexQuota-macOS.zip) herunter.
+3. Doppelklicke im Finder auf die ZIP-Datei, um `CodexQuota.app` zu entpacken. Der Finder kann den lokalisierten App-Namen anzeigen.
+4. Ziehe die entpackte App in den Finder-Ordner **Programme (Applications)**. **⌘⇧A** öffnet diesen Ordner. Installiere die App vor dem Start; öffne sie nicht direkt aus Downloads oder dem entpackten Ordner.
+5. Öffne die App aus **Programme**. Symbol und Prozentwert erscheinen in der Menüleiste; ein fehlendes Dock-Symbol ist normal.
+6. Optional: Öffne die **Einstellungen** der App und aktiviere **Beim Start von ChatGPT öffnen**.
+
+Die App ist lokal signiert und nicht von Apple notarisiert. Falls macOS den ersten Start blockiert, öffne **Systemeinstellungen → Datenschutz & Sicherheit**, suche den Hinweis zur blockierten App und wähle **Dennoch öffnen**. Bestätige anschließend die Rückfrage. Verwende dies nur für die aus diesem Repository heruntergeladene App.
 
 Erfordert macOS 13 oder neuer. Liquid Glass ist ab macOS 26 verfügbar; ältere Versionen verwenden das Systemmaterial.
 

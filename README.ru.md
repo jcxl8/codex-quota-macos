@@ -2,9 +2,9 @@
 
 <h1 align="center">Лимиты Codex для macOS</h1>
 <p align="center">Лимиты ChatGPT Codex всегда под рукой.</p>
-<p align="center"><img src="https://img.shields.io/badge/macOS-13%2B-111111?logo=apple&logoColor=white" alt="macOS 13 или новее"> <img src="https://img.shields.io/badge/Swift-5.9%2B-F05138?logo=swift&logoColor=white" alt="Swift 5.9 или новее"> <img src="https://img.shields.io/badge/version-1.4.0-007AFF" alt="Версия 1.4.0"></p>
+<p align="center"><img src="https://img.shields.io/badge/macOS-13%2B-111111?logo=apple&logoColor=white" alt="macOS 13 или новее"> <img src="https://img.shields.io/badge/Swift-5.9%2B-F05138?logo=swift&logoColor=white" alt="Swift 5.9 или новее"> <img src="https://img.shields.io/badge/version-1.4.1-007AFF" alt="Версия 1.4.1"></p>
 
-<p align="center">🇬🇧 <a href="README.md">English</a> · 🇨🇳 <a href="README.zh-CN.md">简体中文</a> · 🇨🇳 <a href="README.zh-TW.md">繁體中文</a> · 🇷🇺 <a href="README.ru.md">Русский</a> · 🇫🇷 <a href="README.fr.md">Français</a> · 🇩🇪 <a href="README.de.md">Deutsch</a> · 🇮🇹 <a href="README.it.md">Italiano</a> · 🇯🇵 <a href="README.ja.md">日本語</a> · 🇰🇷 <a href="README.ko.md">한국어</a> · 🇵🇹 <a href="README.pt.md">Português</a></p>
+<p align="center">🇬🇧 <a href="README.md">English</a> · 🇨🇳 <a href="README.zh-CN.md">简体中文</a> · 🇨🇳 <a href="README.zh-TW.md">繁體中文</a> · 🇷🇺 <a href="README.ru.md">Русский</a> · 🇫🇷 <a href="README.fr.md">Français</a> · 🇩🇪 <a href="README.de.md">Deutsch</a> · 🇮🇹 <a href="README.it.md">Italiano</a> · 🇯🇵 <a href="README.ja.md">日本語</a> · 🇰🇷 <a href="README.ko.md">한국어</a> · 🇵🇹 <a href="README.pt.md">Português</a> · 🇪🇸 <a href="README.es.md">Español</a></p>
 
 ## Обзор
 
@@ -20,11 +20,18 @@
 | Окна | Всплывающее окно Liquid Glass и отдельное перемещаемое окно |
 | Обновление | Автоматическое обновление каждую минуту; подтверждение перед сбросом |
 | Запуск | Необязательный локальный агент открывает приложение при запуске ChatGPT |
-| Языки | Язык macOS: английский, упрощённый и традиционный китайский, русский, французский, немецкий, итальянский, японский, корейский и португальский |
+| Языки | Язык macOS: английский, упрощённый и традиционный китайский, русский, французский, немецкий, итальянский, японский, корейский, португальский и испанский |
 
 ## Установка
 
-Скачайте [архив macOS](https://github.com/jcxl8/codex-quota-macos/raw/refs/heads/main/CodexQuota-macOS.zip), распакуйте его и откройте CodexQuota.app. Finder показывает название приложения на языке системы. Чтобы включить запуск вместе с ChatGPT, откройте «Настройки» в приложении и включите «Открывать при запуске ChatGPT». Если macOS блокирует первый запуск, нажмите приложение в Finder правой кнопкой мыши и выберите «Открыть».
+1. Сначала установите настольное приложение ChatGPT и войдите в аккаунт.
+2. Скачайте [CodexQuota-macOS.zip](https://github.com/jcxl8/codex-quota-macos/raw/refs/heads/main/CodexQuota-macOS.zip).
+3. В Finder дважды нажмите ZIP-файл, чтобы распаковать `CodexQuota.app`. Finder может показать локализованное название приложения.
+4. Перетащите распакованное приложение в папку **Программы (Applications)** в Finder. Открыть её можно сочетанием **⌘⇧A**. Сначала установите приложение, затем запускайте; не открывайте его прямо из «Загрузок» или папки распаковки.
+5. Откройте приложение из **Программ**. Значок и процент появятся в строке меню; отсутствие значка в Dock нормально.
+6. По желанию откройте **Настройки** приложения и включите **Открывать при запуске ChatGPT**.
+
+Приложение подписано локально и не нотарифицировано Apple. Если macOS блокирует первый запуск, откройте **Системные настройки → Конфиденциальность и безопасность**, найдите уведомление о блокировке приложения, нажмите **Всё равно открыть** и подтвердите действие. Используйте эту процедуру только для приложения, скачанного из этого репозитория.
 
 Требуется macOS 13 или новее. Liquid Glass доступен в macOS 26 и новее; более ранние версии используют системный материал.
 

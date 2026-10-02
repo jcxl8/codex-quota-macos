@@ -791,15 +791,18 @@ if CommandLine.arguments.contains("--self-check") {
     assert(AppLanguage.resolve(preferredLanguages: ["ja-JP"]) == .japanese)
     assert(AppLanguage.resolve(preferredLanguages: ["ko-KR"]) == .korean)
     assert(AppLanguage.resolve(preferredLanguages: ["pt-PT"]) == .portuguese)
-    assert(AppLanguage.resolve(preferredLanguages: ["es-ES", "fr-FR"]) == .french)
-    assert(AppLanguage.resolve(preferredLanguages: ["es-ES"]) == .english)
+    assert(AppLanguage.resolve(preferredLanguages: ["es-ES", "fr-FR"]) == .spanish)
+    assert(AppLanguage.resolve(preferredLanguages: ["es-MX"]) == .spanish)
+    assert(AppLanguage.resolve(preferredLanguages: ["es_AR"]) == .spanish)
+    assert(AppLanguage.resolve(preferredLanguages: ["nl-NL", "fr-FR"]) == .french)
+    assert(AppLanguage.resolve(preferredLanguages: ["nl-NL"]) == .english)
     assert(AppText.text("Updates every minute", language: .simplifiedChinese) == "每分钟自动更新")
     assert(AppText.text("Quit", language: .traditionalChinese) == "退出")
     assert(AppText.text("Open with ChatGPT", language: .simplifiedChinese) == "ChatGPT 启动时打开")
     assert(AppText.text("Open with ChatGPT", language: .traditionalChinese) == "ChatGPT 啟動時開啟")
     assert([
         AppLanguage.simplifiedChinese, .traditionalChinese, .french, .russian,
-        .german, .italian, .japanese, .korean, .portuguese
+        .german, .italian, .japanese, .korean, .portuguese, .spanish
     ].allSatisfy { AppText.text("Open with ChatGPT", language: $0) != "Open with ChatGPT" })
     assert(AppText.text("Quit", language: .french) == "Quitter")
     assert(AppText.text("Quit", language: .russian) == "Выйти")
@@ -808,6 +811,10 @@ if CommandLine.arguments.contains("--self-check") {
     assert(AppText.text("Updates every minute", language: .japanese) == "毎分自動更新")
     assert(AppText.text("Quit", language: .korean) == "종료")
     assert(AppText.text("Quit", language: .portuguese) == "Sair")
+    assert(AppText.text("Codex Quota", language: .spanish) == "Cuota de Codex")
+    assert(AppText.text("Quit", language: .spanish) == "Salir")
+    assert(AppText.text("Resets at %@", language: .spanish).contains("%@"))
+    assert(AppText.text("Available: %d", language: .spanish).contains("%d"))
     print("额度解析检查通过")
 } else if CommandLine.arguments.contains("--probe") {
     MainActor.assumeIsolated {

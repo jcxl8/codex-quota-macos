@@ -11,6 +11,7 @@ enum AppLanguage: String {
     case japanese = "ja"
     case korean = "ko"
     case portuguese = "pt"
+    case spanish = "es"
 
     static func resolve(preferredLanguages: [String]) -> AppLanguage {
         for identifier in preferredLanguages {
@@ -28,6 +29,7 @@ enum AppLanguage: String {
             case "ja": return .japanese
             case "ko": return .korean
             case "pt": return .portuguese
+            case "es": return .spanish
             case "zh":
                 return parts.contains("hant") || parts.contains("tw") || parts.contains("hk") || parts.contains("mo")
                     ? .traditionalChinese
@@ -70,6 +72,7 @@ enum AppText {
         case .japanese: return "\(title)：残り \(value)"
         case .korean: return "\(title): \(value) 남음"
         case .portuguese: return "\(title): \(value) restante"
+        case .spanish: return "\(title): \(value) restante"
         case .simplifiedChinese: return "\(title)剩余\(value)"
         case .traditionalChinese: return "\(title)剩餘\(value)"
         }
@@ -397,6 +400,57 @@ enum AppText {
             "Reset credits available: %d": "Créditos de reposição disponíveis: %d",
             "Updated: %@": "Atualizado: %@",
             "Loading quota…": "A carregar a cota…"
+        ],
+        .spanish: [
+            "Codex Quota": "Cuota de Codex",
+            "Updates every minute": "Actualización cada minuto",
+            "5-hour quota": "Cuota de 5 horas",
+            "Weekly quota": "Cuota semanal",
+            "Resets at %@": "Se restablece el %@",
+            "Remaining quota": "Cuota restante",
+            "Unknown": "Desconocido",
+            "Use one reset credit?": "¿Usar un crédito de restablecimiento?",
+            "Use reset": "Restablecer",
+            "Cancel": "Cancelar",
+            "This will use one reset credit and reset eligible quota.": "Se consumirá un crédito de restablecimiento y se restablecerá la cuota que cumpla los requisitos.",
+            "Refresh": "Actualizar",
+            "Refresh quota": "Actualizar cuota",
+            "Close floating window": "Cerrar ventana flotante",
+            "Open floating window": "Abrir ventana flotante",
+            "Quit": "Salir",
+            "Quit Codex Quota": "Salir de Cuota de Codex",
+            "More options": "Más opciones",
+            "Open with ChatGPT": "Abrir al iniciar ChatGPT",
+            "Settings": "Ajustes",
+            "Could not change launch setting.": "No se pudo cambiar el ajuste de inicio.",
+            "Drag the title to move this window": "Arrastra el título para mover esta ventana",
+            "Reset credits": "Créditos de restablecimiento",
+            "Available: %d": "Disponibles: %d",
+            "Loading…": "Cargando…",
+            "Using…": "Restableciendo…",
+            "Last updated: %@": "Última actualización: %@",
+            "Connecting to Codex…": "Conectando con Codex…",
+            "Codex CLI was not found. Please sign in to ChatGPT.": "No se encontró Codex CLI. Inicia sesión en ChatGPT.",
+            "Quota connection was lost. Click Refresh to try again.": "Se perdió la conexión con la cuota. Pulsa Actualizar para volver a intentarlo.",
+            "Connection interrupted. Confirm again to safely retry this reset.": "Conexión interrumpida. Confirma de nuevo para reintentar este restablecimiento de forma segura.",
+            "Unable to start Codex CLI.": "No se pudo iniciar Codex CLI.",
+            "Could not send a request to Codex.": "No se pudo enviar una solicitud a Codex.",
+            "Timed out while reading quota; values may be outdated.": "Se agotó el tiempo de espera al consultar la cuota; los valores podrían estar desactualizados.",
+            "The reset result is unconfirmed. Confirm again to retry safely.": "No se ha confirmado el resultado del restablecimiento. Confirma de nuevo para reintentarlo de forma segura.",
+            "Initialization failed. Update Codex CLI.": "Error de inicialización. Actualiza Codex CLI.",
+            "Could not read quota. Make sure you are signed in to ChatGPT.": "No se pudo consultar la cuota. Comprueba que has iniciado sesión en ChatGPT.",
+            "No quota data was returned; this account may not support it.": "No se recibieron datos de cuota; es posible que esta cuenta no sea compatible.",
+            "Reset is unconfirmed. Confirm again to retry safely.": "El restablecimiento no está confirmado. Confirma de nuevo para reintentarlo de forma segura.",
+            "Reset used. Refreshing quota…": "Crédito consumido. Actualizando cuota…",
+            "This reset request was already completed. Refreshing quota…": "Esta solicitud de restablecimiento ya se completó. Actualizando cuota…",
+            "No reset credits are currently available.": "No hay créditos de restablecimiento disponibles en este momento.",
+            "There is no quota eligible for reset.": "No hay ninguna cuota que se pueda restablecer.",
+            "Reset was not completed. Confirm again to retry safely.": "El restablecimiento no se completó. Confirma de nuevo para reintentarlo de forma segura.",
+            "5-hour quota: %@": "Cuota de 5 horas: %@",
+            "Weekly quota: %@": "Cuota semanal: %@",
+            "Reset credits available: %d": "Créditos de restablecimiento disponibles: %d",
+            "Updated: %@": "Actualizado: %@",
+            "Loading quota…": "Cargando cuota…"
         ]
     ]
 
